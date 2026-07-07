@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMARAPU BHANU PRASAD | AWS Cloud & DevOps Engineer Portfolio</title>
+    <meta name="description" content="Professional portfolio of AMARAPU BHANU PRASAD, AWS Cloud Engineer and DevOps practitioner. Showcasing secure, scalable, and automated cloud infrastructure solutions.">
+    <meta name="keywords" content="AWS, Cloud Engineer, DevOps, Docker, Jenkins, Terraform, Kubernetes, Linux, Automation, Portfolio">
+    <meta name="author" content="AMARAPU BHANU PRASAD">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme" style="overflow: hidden;">
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor-ring"></div>
+    <div id="custom-cursor-dot"></div>
+
+    <!-- Preloader Screen -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="loader-circle"></div>
+            <div class="loader-cloud-icon">
+                <i data-lucide="cloud"></i>
+            </div>
+            <div class="preloader-terminal">
+                <span id="preloader-typing"></span><span class="typing-cursor">|</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Floating Gradients Background -->
+    <div class="glow-bg-container">
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+        <div class="glow-blob blob-3"></div>
+    </div>
+    
+    <!-- Subtle Grid overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Header / Navigation -->
+    <header class="navbar-header" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" id="nav-logo-link">
+                <span class="logo-terminal">&gt;_</span>
+                <span class="logo-text">ABP<span class="logo-accent">.Cloud</span></span>
+            </a>
+            
+            <nav class="nav-links-wrapper" id="nav-menu">
+                <a href="#home" class="nav-link active" id="nav-link-home">Home</a>
+                <a href="#about" class="nav-link" id="nav-link-about">About</a>
+                <a href="#skills" class="nav-link" id="nav-link-skills">Skills</a>
+                <a href="#projects" class="nav-link" id="nav-link-projects">Projects</a>
+                <a href="#future-projects" class="nav-link" id="nav-link-future">Future Projects</a>
+                <a href="#academic-hub" class="nav-link" id="nav-link-hub">Resource Hub</a>
+                <a href="#resume" class="nav-link" id="nav-link-resume">Resume</a>
+                <a href="#experience" class="nav-link" id="nav-link-experience">Experience</a>
+                <a href="#github-stats" class="nav-link" id="nav-link-github">GitHub</a>
+                <a href="#contact" class="nav-link" id="nav-link-contact">Contact</a>
+            </nav>
+
+            <div class="nav-controls">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Mode">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="nav-menu-toggle" aria-label="Toggle Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="section-container hero-grid">
+                <div class="hero-content">
+                    <div class="console-badge" id="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">SYSTEM STATUS: ONLINE</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="greeting">Hi, I'm</span><br>
+                        <span class="highlight-name">AMARAPU BHANU PRASAD</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        <span id="typing-text"></span><span class="typing-cursor">|</span>
+                    </h2>
+                    <p class="hero-tagline">
+                        Designing Secure, Scalable & Automated Cloud Solutions on AWS. Specializing in Infrastructure as Code, CI/CD pipelines, and cloud security architectures.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="#resume" class="btn btn-primary" id="download-resume-btn">
+                            <i data-lucide="download"></i> Download Resume
+                        </a>
+                        <a href="#projects" class="btn btn-secondary" id="view-projects-btn">
+                            <i data-lucide="layout"></i> View Projects
+                        </a>
+                    </div>
+                    
+                    <div class="hero-socials">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" id="hero-github-btn" aria-label="GitHub">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" id="hero-linkedin-btn" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="#contact" class="social-icon" id="hero-contact-btn" aria-label="Contact Email">
+                            <i data-lucide="mail"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-avatar-centerpiece">
+                        <!-- Soft ambient glow -->
+                        <div class="avatar-ambient-glow"></div>
+                        
+                        <!-- Rotating outer ring -->
+                        <div class="avatar-rotating-ring"></div>
+                        
+                        <!-- Pulsing inner ring (bangle style) -->
+                        <div class="avatar-pulsing-bangle"></div>
+                        
+                        <!-- Glassmorphism backdrop and main image -->
+                        <div class="avatar-image-container">
+                            <img src="profile.png" alt="AMARAPU BHANU PRASAD" class="centerpiece-avatar">
+                        </div>
+                        
+                        <!-- Floating DevOps-themed particles orbiting gently -->
+                        <div class="avatar-orbiting-particles">
+                            <div class="particle cloud-particle"><i data-lucide="cloud"></i></div>
+                            <div class="particle container-particle"><i data-lucide="box"></i></div>
+                            <div class="particle node-particle"><i data-lucide="git-branch"></i></div>
+                            <div class="particle binary-particle">10</div>
+                            <div class="particle dot-particle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#about" class="scroll-down-indicator" aria-label="Scroll to About Section">
+                <i data-lucide="chevron-down"></i>
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Who I Am</span>
+                    <h2 class="section-title">About Me</h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-text-content glass-card">
+                        <div class="card-glow-border"></div>
+                        <h3 class="about-heading">AWS Cloud Engineer & DevOps Enthusiast</h3>
+                        <p class="about-desc">
+                            Hello! I am a passionate Cloud & DevOps engineer focused on architecting resilient, automated, and secure cloud infrastructures. I enjoy bridging the gap between development and operations by implementing continuous integration, deployment pipelines, containerization, and configuration management.
+                        </p>
+                        <p class="about-desc">
+                            With a strong academic foundation (Master of Computer Applications - MCA) and a hands-on learning mindset, I specialize in the AWS ecosystem, Linux system administration, and infrastructure automation using modern GitOps practices.
+                        </p>
+                        
+                        <div class="about-tags">
+                            <span class="tech-tag"><i data-lucide="cloud"></i> AWS Cloud Engineer</span>
+                            <span class="tech-tag"><i data-lucide="git-branch"></i> DevOps Learner</span>
+                            <span class="tech-tag"><i data-lucide="terminal"></i> Linux Enthusiast</span>
+                            <span class="tech-tag"><i data-lucide="box"></i> Docker</span>
+                            <span class="tech-tag"><i data-lucide="cpu"></i> Jenkins</span>
+                            <span class="tech-tag"><i data-lucide="shield-check"></i> Cloud Security</span>
+                            <span class="tech-tag"><i data-lucide="activity"></i> Infrastructure Automation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="about-cards-grid">
+                        <div class="about-focus-card glass-card">
+                            <div class="card-icon-wrapper blue">
+                                <i data-lucide="cloud"></i>
+                            </div>
+                            <h4>Cloud Computing</h4>
+                            <p>Designing multi-tier, highly available infrastructures using core AWS services like VPC, EC2, S3, RDS, Lambda.</p>
+                        </div>
+                        
+                        <div class="about-focus-card glass-card">
+                            <div class="card-icon-wrapper orange">
+                                <i data-lucide="git-merge"></i>
+                            </div>
+                            <h4>DevOps</h4>
+                            <p>Automating build, test, and release flows with Git, GitHub actions, and Jenkins pipelines for faster deployments.</p>
+                        </div>
+                        
+                        <div class="about-focus-card glass-card">
+                            <div class="card-icon-wrapper green">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <h4>Automation</h4>
+                            <p>Treating infrastructure as code, automating cloud resource deployments, and building smart Python utilities.</p>
+                        </div>
+                        
+                        <div class="about-focus-card glass-card">
+                            <div class="card-icon-wrapper purple">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <h4>Monitoring</h4>
+                            <p>Setting up metrics collection and observability tools using CloudWatch, Prometheus, and Grafana dashboards.</p>
+                        </div>
+                        
+                        <div class="about-focus-card glass-card">
+                            <div class="card-icon-wrapper cyan">
+                                <i data-lucide="network"></i>
+                            </div>
+                            <h4>Networking</h4>
+                            <p>Structuring custom Virtual Private Clouds (VPC) with subnets, route tables, internet gateways, and security policies.</p>
+                        </div>
+                        
+                        <div class="about-focus-card glass-card">
+                            <div class="card-icon-wrapper red">
+                                <i data-lucide="shield"></i>
+                            </div>
+                            <h4>Cloud Security</h4>
+                            <p>Enforcing Least Privilege access policies with AWS IAM, security groups, ACLs, encryption, and key management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Technical Arsenal</span>
+                    <h2 class="section-title">My Skills</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="skills-groups-grid">
+                    <!-- Cloud Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="cloud"></i> Cloud</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="AWS (Amazon Web Services)" data-percentage="90">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="cloud" class="skill-ico aws-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">AWS</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Microsoft Azure" data-percentage="75">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="server" class="skill-ico azure-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Azure</span>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Google Cloud Platform" data-percentage="70">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="globe" class="skill-ico gcp-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">GCP</span>
+                                <span class="skill-pct">70%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Containers Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="box"></i> Containers</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="Docker Containerization" data-percentage="85">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="box" class="skill-ico docker-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Docker</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Kubernetes Orchestration" data-percentage="80">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="network" class="skill-ico k8s-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Kubernetes</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CI/CD Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="git-merge"></i> CI/CD</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="Jenkins Automation Server" data-percentage="80">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="cpu" class="skill-ico jenkins-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Jenkins</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="GitHub Actions CI/CD" data-percentage="85">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="github" class="skill-ico gh-actions-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">GitHub Actions</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="GitLab CI Pipelines" data-percentage="70">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="git-pull-request" class="skill-ico gitlab-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">GitLab CI</span>
+                                <span class="skill-pct">70%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IaC Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="layers"></i> IaC</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="Terraform Infrastructure as Code" data-percentage="85">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="file-code" class="skill-ico terraform-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Terraform</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="AWS CloudFormation Templates" data-percentage="75">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="layers" class="skill-ico cf-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">CloudFormation</span>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Ansible Config Management" data-percentage="70">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="settings" class="skill-ico ansible-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Ansible</span>
+                                <span class="skill-pct">70%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monitoring Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="activity"></i> Monitoring</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="Prometheus Metrics Collector" data-percentage="80">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="line-chart" class="skill-ico prom-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Prometheus</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Grafana Visualization Panels" data-percentage="85">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="bar-chart-3" class="skill-ico grafana-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Grafana</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="AWS CloudWatch Logs & Metrics" data-percentage="80">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="eye" class="skill-ico cw-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">CloudWatch</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="ELK (Elastic Stack Logging)" data-percentage="75">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="database" class="skill-ico elk-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">ELK</span>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Programming Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="code"></i> Programming</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="Python Automation Scripting" data-percentage="85">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="code-2" class="skill-ico py-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Python</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Shell & Bash Scripting" data-percentage="80">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="terminal" class="skill-ico bash-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Shell</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Java Backend Systems" data-percentage="75">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="coffee" class="skill-ico java-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Java</span>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="JavaScript / Frontend APIs" data-percentage="80">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="braces" class="skill-ico js-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">JavaScript</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Version Control Group -->
+                    <div class="skills-group-card glass-card">
+                        <h3 class="group-title"><i data-lucide="git-branch"></i> Version Control</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-tooltip="Git Distributed Version Control" data-percentage="90">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="git-fork" class="skill-ico git-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Git</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="GitHub Collaboration Hub" data-percentage="90">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="github" class="skill-ico github-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">GitHub</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-item" data-tooltip="Atlassian Bitbucket Repos & Pipelines" data-percentage="75">
+                                <div class="skill-progress-container">
+                                    <svg class="progress-ring" viewBox="0 0 80 80">
+                                        <polygon class="progress-ring-bg" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                        <polygon class="progress-ring-fill" points="74,40 57,69.44 23,69.44 6,40 23,10.56 57,10.56" />
+                                    </svg>
+                                    <div class="skill-icon-wrap">
+                                        <i data-lucide="git-merge" class="skill-ico bitbucket-color"></i>
+                                    </div>
+                                </div>
+                                <span class="skill-lbl">Bitbucket</span>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Practical Implementations</span>
+                    <h2 class="section-title">Projects</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card glass-card" data-project-id="1">
+                        <div class="card-glow-border"></div>
+                        <div class="project-card-header">
+                            <div class="project-icon-wrapper orange">
+                                <i data-lucide="database"></i>
+                            </div>
+                            <span class="project-badge">Enterprise Cloud Storage</span>
+                        </div>
+                        <div class="project-card-body">
+                            <h3 class="project-title">Hybrid Cloud Deduplication System with ML-Based Similarity Detection</h3>
+                            <p class="project-description">
+                                An enterprise-grade hybrid cloud storage optimization platform implementing secure deduplication. Dual-layered cryptographic verification combined with CNS storage optimization.
+                            </p>
+                            <div class="project-tech-badges">
+                                <span class="badge">SHA-256</span>
+                                <span class="badge">AES-256</span>
+                                <span class="badge">CNS</span>
+                                <span class="badge">Decision Tree</span>
+                                <span class="badge">SBERT</span>
+                                <span class="badge">DINOv2</span>
+                                <span class="badge">AWS S3</span>
+                                <span class="badge">RBAC</span>
+                            </div>
+                            <!-- CI/CD progress bar -->
+                            <div class="project-card-cicd-bar">
+                                <div class="project-card-cicd-progress"></div>
+                            </div>
+                        </div>
+                        <div class="project-view-details">
+                            <span>View Deployment Pipeline / Detail Specs</span>
+                            <i data-lucide="chevron-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card glass-card" data-project-id="2">
+                        <div class="card-glow-border"></div>
+                        <div class="project-card-header">
+                            <div class="project-icon-wrapper blue">
+                                <i data-lucide="book-open"></i>
+                            </div>
+                            <span class="project-badge">Academic Management</span>
+                        </div>
+                        <div class="project-card-body">
+                            <h3 class="project-title">Study Stream (Academic Resource Hub)</h3>
+                            <p class="project-description">
+                                A comprehensive academic resource management platform built using a modern React frontend and a Flask RESTful API. Escales files secure storage and database integrations.
+                            </p>
+                            <div class="project-tech-badges">
+                                <span class="badge">React</span>
+                                <span class="badge">Flask</span>
+                                <span class="badge">MySQL</span>
+                                <span class="badge">Docker</span>
+                                <span class="badge">AWS S3</span>
+                                <span class="badge">JWT</span>
+                                <span class="badge">REST APIs</span>
+                            </div>
+                            <!-- CI/CD progress bar -->
+                            <div class="project-card-cicd-bar">
+                                <div class="project-card-cicd-progress"></div>
+                            </div>
+                        </div>
+                        <div class="project-view-details">
+                            <span>View Deployment Pipeline / Detail Specs</span>
+                            <i data-lucide="chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Projects Section -->
+        <section id="future-projects" class="future-projects-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Upcoming Deployments</span>
+                    <h2 class="section-title">Future Projects</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="future-projects-grid">
+                    <!-- Future 1 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">AWS Three Tier Architecture</h4>
+                        <p class="future-desc">Implementing an auto-scalable, highly resilient multi-tier web application spanning public/private subnets, managed by ALB, Auto Scaling groups, and RDS Multi-AZ.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 2 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">CI/CD Pipeline using Jenkins</h4>
+                        <p class="future-desc">A complete GitOps execution automation pipeline involving code linting, security scanning, unit testing, container building, and deploying directly to AWS EC2 instances.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 3 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Dockerized Microservices</h4>
+                        <p class="future-desc">Structuring containerized applications communicating via message brokers (RabbitMQ/Kafka) with localized database states and integrated service discovery.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 4 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Terraform Infrastructure Automation</h4>
+                        <p class="future-desc">Authoring modular Terraform scripts to deploy a secure cloud foundation including IAM roles, VPC configurations, security profiles, and compute nodes with remote state locking.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 5 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Kubernetes on AWS</h4>
+                        <p class="future-desc">Deploying containerized microservices to an Amazon EKS cluster, managing configurations with Helm, ingress controllers, persistent volume claims, and IAM Roles for Service Accounts.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 6 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Monitoring using Prometheus & Grafana</h4>
+                        <p class="future-desc">Setting up robust visual dashboarding and alerting thresholds for systems metrics and application logs scraped dynamically from remote client nodes.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 7 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">AWS Cost Optimization Dashboard</h4>
+                        <p class="future-desc">Writing custom serverless lambdas to audit cloud utilization, cleanup orphaned volumes, trigger auto-stop policies, and report expenditures dynamically.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 8 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Serverless File Processing System</h4>
+                        <p class="future-desc">An event-driven pipeline trigger upon S3 uploads, utilizing Lambda layers to compress images, extract PDF metadata, and write transactions to DynamoDB.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 9 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Infrastructure as Code</h4>
+                        <p class="future-desc">Building reusable infrastructure patterns across multiple cloud accounts using AWS CloudFormation and AWS CDK in Python.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+
+                    <!-- Future 10 -->
+                    <div class="future-project-card glass-card">
+                        <div class="future-badge">
+                            <span class="pulsing-dot yellow"></span>
+                            <span class="status-text">Coming Soon</span>
+                        </div>
+                        <h4 class="future-title">Cloud Disaster Recovery Platform</h4>
+                        <p class="future-desc">Configuring cross-region backup policies, S3 replication, pilot-light database failovers, and DNS routing rules for zero-downtime recovery solutions.</p>
+                        <div class="future-footer">
+                            <span class="placeholder-repo"><i data-lucide="git-branch"></i> git-repo-placeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Resource Hub -->
+        <section id="academic-hub" class="academic-hub-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Learning Center</span>
+                    <h2 class="section-title">Academic Resource Hub</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="hub-intro glass-card">
+                    <div class="hub-intro-content">
+                        <i data-lucide="graduation-cap" class="hub-main-icon"></i>
+                        <div>
+                            <h3>Knowledge Repository</h3>
+                            <p>A centralized learning platform for cloud, DevOps, programming, and interview preparation resources. Search and filter through high-quality notes, cheat sheets, and blueprints compiled during my cloud journey.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Search Bar and Filters -->
+                    <div class="hub-controls">
+                        <div class="search-bar-wrapper">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="hub-search-input" placeholder="Search resources (e.g. AWS, Linux, Python...)" aria-label="Search resources">
+                            <button id="hub-search-clear" class="search-clear-btn" style="display: none;"><i data-lucide="x"></i></button>
+                        </div>
+                        <div class="hub-filter-tabs">
+                            <button class="filter-tab active" data-filter="all" id="filter-all">All</button>
+                            <button class="filter-tab" data-filter="cloud" id="filter-cloud">Cloud</button>
+                            <button class="filter-tab" data-filter="devops" id="filter-devops">DevOps</button>
+                            <button class="filter-tab" data-filter="programming" id="filter-prog">Code</button>
+                            <button class="filter-tab" data-filter="career" id="filter-career">Career</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resources-grid" id="resources-container">
+                    <!-- AWS Notes -->
+                    <div class="resource-card glass-card" data-category="cloud" data-tags="aws cloud network storage compute security s3 ec2 iam lambdas">
+                        <div class="resource-type orange"><i data-lucide="cloud"></i> Cloud Notes</div>
+                        <h4 class="resource-title">AWS Core Services Study Notes</h4>
+                        <p class="resource-desc">Comprehensive reference guide covering S3 design configurations, VPC networking, security group setups, EC2 autoscaling architectures, IAM policies, and Lambda deployment guidelines.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- Linux Notes -->
+                    <div class="resource-card glass-card" data-category="devops" data-tags="linux bash command systems admin process network configuration terminal">
+                        <div class="resource-type green"><i data-lucide="terminal"></i> Systems Admin</div>
+                        <h4 class="resource-title">Linux Command & Bash Scripting Cheat Sheet</h4>
+                        <p class="resource-desc">Practical guide detailing bash scripting techniques, permissions administration, system resource monitoring Commands, process tracking, SSH setups, and logs analysis.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- Docker Notes -->
+                    <div class="resource-card glass-card" data-category="devops" data-tags="docker containers images networking volumes orchestrations registry volumes compose">
+                        <div class="resource-type blue"><i data-lucide="box"></i> Containerization</div>
+                        <h4 class="resource-title">Docker Deep Dive & Container Optimization</h4>
+                        <p class="resource-desc">Actionable tips for crafting minimal Docker images, managing Docker volumes, setting up internal container networks, Docker Compose configurations, and security audits.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- Jenkins Notes -->
+                    <div class="resource-card glass-card" data-category="devops" data-tags="jenkins pipelines gitops deploy tests build automated continuous integrations">
+                        <div class="resource-type red"><i data-lucide="cpu"></i> CI/CD Pipeline</div>
+                        <h4 class="resource-title">Jenkins Declarative Pipelines Architecture</h4>
+                        <p class="resource-desc">Blueprints for writing Jenkinsfiles, utilizing shared libraries, configuring webhooks, environment parameters, testing steps, and automated Slack/Email alerts integration.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- DevOps Notes -->
+                    <div class="resource-card glass-card" data-category="devops" data-tags="devops git config systems release deploy logs metrics prometheus terraform">
+                        <div class="resource-type purple"><i data-lucide="git-merge"></i> DevOps Roadmap</div>
+                        <h4 class="resource-title">Modern DevOps Best Practices & Patterns</h4>
+                        <p class="resource-desc">Reference compilation of configuration management concepts, disaster recovery targets, continuous monitoring, and infrastructure provisioning patterns.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- Python Notes -->
+                    <div class="resource-card glass-card" data-category="programming" data-tags="python programming algorithms Flask scripts api backend data databases">
+                        <div class="resource-type cyan"><i data-lucide="code"></i> Coding Notes</div>
+                        <h4 class="resource-title">Python for Cloud Automation & API Development</h4>
+                        <p class="resource-desc">Guide to scripting automation scripts with boto3, constructing RESTful microservices using Flask/FastAPI, handling file inputs, and database ORM integrations.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- Interview Questions -->
+                    <div class="resource-card glass-card" data-category="career" data-tags="interview career jobs prep aws devops linux questions answers scenarios">
+                        <div class="resource-type orange"><i data-lucide="award"></i> Placement Prep</div>
+                        <h4 class="resource-title">AWS & DevOps Interview Question Bank</h4>
+                        <p class="resource-desc">Curated catalog of scenario-based technical questions. Covers troubleshooting server issues, solving cloud downtime, scaling pipelines, and system design exercises.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- Mini Projects -->
+                    <div class="resource-card glass-card" data-category="programming" data-tags="projects practice lab server scripting local docker test mock">
+                        <div class="resource-type blue"><i data-lucide="layout"></i> Hands-on Labs</div>
+                        <h4 class="resource-title">Cloud-Native Mini Projects Blueprints</h4>
+                        <p class="resource-desc">A selection of mini-labs and build tutorials designed to test cloud architectures, local Docker configuration environments, web applications, and database synchronization.</p>
+                        <div class="resource-actions">
+                            <a href="#" class="btn btn-sm btn-primary placeholder-link"><i data-lucide="book-open"></i> Open Resource</a>
+                            <a href="https://github.com" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="github"></i> Code</a>
+                            <a href="#" class="btn btn-sm btn-secondary placeholder-link"><i data-lucide="file-text"></i> Docs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="resume-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Qualifications</span>
+                    <h2 class="section-title">Resume & Academic Background</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="resume-content-grid">
+                    <!-- Left: Education -->
+                    <div class="resume-column">
+                        <h3 class="resume-column-title"><i data-lucide="graduation-cap"></i> Education</h3>
+                        <div class="resume-timeline-wrapper">
+                            <div class="timeline-item-card glass-card">
+                                <span class="timeline-date">2023 - 2026</span>
+                                <h4 class="timeline-degree">Master of Computer Applications (MCA)</h4>
+                                <p class="timeline-org">Postgraduate Degree</p>
+                                <p class="timeline-desc">Specialized in advanced computing architectures, database systems management, web technologies, software engineering methodologies, and cloud operations basics.</p>
+                            </div>
+                            <div class="timeline-item-card glass-card">
+                                <span class="timeline-date">2020 - 2023</span>
+                                <h4 class="timeline-degree">Bachelor Degree</h4>
+                                <p class="timeline-org">Undergraduate Degree</p>
+                                <p class="timeline-desc">Acquired a solid grounding in programming concepts, data structures, object-oriented paradigms, networking protocols, and systems administration.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Certifications -->
+                    <div class="resume-column">
+                        <h3 class="resume-column-title"><i data-lucide="award"></i> Certifications</h3>
+                        <div class="resume-timeline-wrapper">
+                            <div class="timeline-item-card glass-card">
+                                <span class="certification-badge"><i data-lucide="check-circle"></i> AWS Verified</span>
+                                <h4 class="timeline-degree">AWS Getting Started Certification</h4>
+                                <p class="timeline-org">Amazon Web Services</p>
+                                <p class="timeline-desc">Validation of foundational cloud concepts, pricing metrics, security best practices, core computing structures, and deployment pipelines on AWS.</p>
+                            </div>
+                            
+                            <div class="timeline-item-card glass-card">
+                                <span class="certification-badge"><i data-lucide="check-circle"></i> Practical</span>
+                                <h4 class="timeline-degree">AWS Solutions Architecture Job Simulation</h4>
+                                <p class="timeline-org">Forage Practical Simulation</p>
+                                <p class="timeline-desc">Gained practical exposure designing disaster recovery configurations, multi-AZ systems, scalable network models, and cost optimizations mirroring real-world business constraints.</p>
+                            </div>
+
+                            <div class="timeline-item-card glass-card">
+                                <span class="certification-badge"><i data-lucide="check-circle"></i> Hackathon Winner</span>
+                                <h4 class="timeline-degree">GenAI Hackathon Participant & Developer</h4>
+                                <p class="timeline-org">Artificial Intelligence Developers Collective</p>
+                                <p class="timeline-desc">Leveraged cloud computing and large language models (LLMs) to construct functional pipelines processing speech-to-text, optical character recognition, and cloud caching modules.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-download-section">
+                    <p>Want to review my complete professional credentials? Access my print-ready PDF resume.</p>
+                    <a href="#" class="btn btn-primary" id="resume-download-action"><i data-lucide="download"></i> Download Full Resume PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section id="experience" class="experience-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Technical Milestones</span>
+                    <h2 class="section-title">Experience Timeline</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="vertical-timeline">
+                    <div class="timeline-connector-line">
+                        <div class="timeline-connector-progress"></div>
+                    </div>
+                    
+                    <!-- Milestone 1 -->
+                    <div class="timeline-point-row completed">
+                        <div class="timeline-icon-box">
+                            <i data-lucide="cloud"></i>
+                        </div>
+                        <div class="timeline-details glass-card">
+                            <span class="milestone-tag">Milestone 1</span>
+                            <h4>Learning AWS & Core Cloud Infrastructures</h4>
+                            <p class="milestone-desc">Mastered AWS fundamentals: deploying virtual servers (EC2), constructing custom virtual networks (VPC) with granular routing parameters, using S3 object store, and managing role permissions with IAM.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div class="timeline-point-row completed reverse">
+                        <div class="timeline-icon-box">
+                            <i data-lucide="terminal"></i>
+                        </div>
+                        <div class="timeline-details glass-card">
+                            <span class="milestone-tag">Milestone 2</span>
+                            <h4>Learning Linux System Administration</h4>
+                            <p class="milestone-desc">Built strong operating systems foundations, mastering command-line interfaces, writing shell scripts, monitoring system performance metrics, diagnosing networking logs, and securing files policies.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div class="timeline-point-row completed">
+                        <div class="timeline-icon-box">
+                            <i data-lucide="box"></i>
+                        </div>
+                        <div class="timeline-details glass-card">
+                            <span class="milestone-tag">Milestone 3</span>
+                            <h4>Containerization & Image Optimization</h4>
+                            <p class="milestone-desc">Began containerizing microservices. Learned to write Dockerfiles using multi-stage builds for light image footprints, managing volumes, and orchestrating multi-container platforms using Docker Compose.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div class="timeline-point-row completed reverse">
+                        <div class="timeline-icon-box">
+                            <i data-lucide="layers"></i>
+                        </div>
+                        <div class="timeline-details glass-card">
+                            <span class="milestone-tag">Milestone 4</span>
+                            <h4>Building Cloud Projects</h4>
+                            <p class="milestone-desc">Synthesized cloud and programming capabilities. Built Study Stream and developed the Hybrid Cloud Deduplication system, utilizing S3 cloud storage integrations and database deployments.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 5 -->
+                    <div class="timeline-point-row completed">
+                        <div class="timeline-icon-box">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <div class="timeline-details glass-card">
+                            <span class="milestone-tag">Milestone 5</span>
+                            <h4>Learning Jenkins & CI/CD Pipelines</h4>
+                            <p class="milestone-desc">Dived into deployment engineering concepts: managing source controls, writing automated Jenkinsfiles pipelines, configuring webhooks triggers, and integrating code scanners.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 6 -->
+                    <div class="timeline-point-row future reverse">
+                        <div class="timeline-icon-box">
+                            <i data-lucide="award"></i>
+                        </div>
+                        <div class="timeline-details glass-card">
+                            <span class="milestone-tag">Milestone 6</span>
+                            <h4>Preparing AWS Solutions Architect Certification</h4>
+                            <p class="milestone-desc">Consolidating practical experience by training for the AWS Certified Solutions Architect - Associate. Simulating large-scale architectures, cloud migrations, and high-availability design scenarios.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Statistics Section -->
+        <section id="github-stats" class="github-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Open Source Contributions</span>
+                    <h2 class="section-title">GitHub Statistics</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="github-dashboard glass-card">
+                    <div class="github-dashboard-header">
+                        <div class="github-info">
+                            <i data-lucide="github" class="github-logo"></i>
+                            <div>
+                                <h3>GitOps Activity Monitor</h3>
+                                <p>Live statistics fetched directly from GitHub API.</p>
+                            </div>
+                        </div>
+                        <div class="github-search-control">
+                            <input type="text" id="github-username-input" value="BhanuPrasad-Amarapu" placeholder="GitHub Username..." aria-label="Enter GitHub Username">
+                            <button id="github-fetch-btn" class="btn btn-secondary btn-sm">Fetch Stats</button>
+                        </div>
+                    </div>
+
+                    <div class="github-stats-grid">
+                        <!-- Stat 1 -->
+                        <div class="github-stat-widget">
+                            <span class="widget-label">Repositories</span>
+                            <span class="widget-value" id="git-repos-val">12</span>
+                            <i data-lucide="folder-git-2" class="widget-icon"></i>
+                        </div>
+                        <!-- Stat 2 -->
+                        <div class="github-stat-widget">
+                            <span class="widget-label">Total Stars</span>
+                            <span class="widget-value" id="git-stars-val">3</span>
+                            <i data-lucide="star" class="widget-icon"></i>
+                        </div>
+                        <!-- Stat 3 -->
+                        <div class="github-stat-widget">
+                            <span class="widget-label">Followers</span>
+                            <span class="widget-value" id="git-followers-val">4</span>
+                            <i data-lucide="users" class="widget-icon"></i>
+                        </div>
+                        <!-- Stat 4 -->
+                        <div class="github-stat-widget">
+                            <span class="widget-label">Build System</span>
+                            <span class="widget-value text-green" id="git-status-val">PASSING</span>
+                            <i data-lucide="check-circle" class="widget-icon green"></i>
+                        </div>
+                    </div>
+
+                    <!-- Languages and Activity -->
+                    <div class="github-visualizer-row">
+                        <!-- Top Languages -->
+                        <div class="visualizer-card">
+                            <h4>Top Languages</h4>
+                            <div class="language-bar-chart">
+                                <div class="lang-item">
+                                    <div class="lang-meta">
+                                        <span>Python</span>
+                                        <span>45%</span>
+                                    </div>
+                                    <div class="lang-bar-track">
+                                        <div class="lang-bar-fill progress-python" style="width: 45%;"></div>
+                                    </div>
+                                </div>
+                                <div class="lang-item">
+                                    <div class="lang-meta">
+                                        <span>Shell Scripting</span>
+                                        <span>25%</span>
+                                    </div>
+                                    <div class="lang-bar-track">
+                                        <div class="lang-bar-fill progress-shell" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                                <div class="lang-item">
+                                    <div class="lang-meta">
+                                        <span>React / Javascript</span>
+                                        <span>18%</span>
+                                    </div>
+                                    <div class="lang-bar-track">
+                                        <div class="lang-bar-fill progress-js" style="width: 18%;"></div>
+                                    </div>
+                                </div>
+                                <div class="lang-item">
+                                    <div class="lang-meta">
+                                        <span>Java</span>
+                                        <span>12%</span>
+                                    </div>
+                                    <div class="lang-bar-track">
+                                        <div class="lang-bar-fill progress-java" style="width: 12%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contributions Graph Mockup (Dynamically Generated or Statically styled) -->
+                        <div class="visualizer-card">
+                            <h4>Activity Matrix (Last 12 Months)</h4>
+                            <div class="activity-matrix-wrapper">
+                                <div class="activity-matrix" id="github-activity-matrix">
+                                    <!-- Populated by JS -->
+                                </div>
+                                <div class="matrix-legend">
+                                    <span>Less</span>
+                                    <div class="legend-cell level-0"></div>
+                                    <div class="legend-cell level-1"></div>
+                                    <div class="legend-cell level-2"></div>
+                                    <div class="legend-cell level-3"></div>
+                                    <div class="legend-cell level-4"></div>
+                                    <span>More</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section scroll-offset">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">/ Let's Collaborate</span>
+                    <h2 class="section-title">Contact</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Cards -->
+                    <div class="contact-info-column">
+                        <div class="contact-info-card glass-card">
+                            <i data-lucide="mail" class="contact-icon orange"></i>
+                            <div>
+                                <h5>Email Me</h5>
+                                <a href="mailto:bhanuprasad.amarapu@example.com" id="contact-email-link">bhanuprasad.amarapu@example.com</a>
+                                <p class="card-hint">Open for career opportunities & technical chats.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card glass-card">
+                            <i data-lucide="phone" class="contact-icon green"></i>
+                            <div>
+                                <h5>Call Me</h5>
+                                <a href="tel:+919876543210" id="contact-phone-link">+91 9876543210</a>
+                                <p class="card-hint">Available for phone / virtual coffee interviews.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card glass-card">
+                            <i data-lucide="map-pin" class="contact-icon blue"></i>
+                            <div>
+                                <h5>Location</h5>
+                                <p class="location-text">Hyderabad, India</p>
+                                <p class="card-hint">Willing to relocate / hybrid / remote setups.</p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Connections -->
+                        <div class="contact-social-card glass-card">
+                            <h5>Professional Networks</h5>
+                            <div class="social-row">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" id="contact-github-btn" aria-label="GitHub Page">
+                                    <i data-lucide="github"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" id="contact-linkedin-btn" aria-label="LinkedIn Profile">
+                                    <i data-lucide="linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form (DevOps Trigger Interface) -->
+                    <div class="contact-form-card glass-card">
+                        <div class="form-header-terminal">
+                            <div class="terminal-status-light blinking-green"></div>
+                            <span>devops_contact_pipeline.yaml</span>
+                        </div>
+                        
+                        <form id="contact-form" class="pipeline-form">
+                            <div class="form-group">
+                                <label for="contact-name">sender_name:</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="user" class="field-icon"></i>
+                                    <input type="text" id="contact-name" name="name" required placeholder="John Doe">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-email">sender_email:</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="mail" class="field-icon"></i>
+                                    <input type="email" id="contact-email" name="email" required placeholder="john.doe@company.com">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-subject">subject_payload:</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="file-text" class="field-icon"></i>
+                                    <input type="text" id="contact-subject" name="subject" required placeholder="Cloud Engineer Position">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message">message_body:</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="message-square" class="field-icon"></i>
+                                    <textarea id="contact-message" name="message" rows="5" required placeholder="Write your message details here..."></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit-pipeline" id="contact-submit-btn">
+                                <span class="btn-text"><i data-lucide="play"></i> Trigger Pipeline Deploy</span>
+                                <span class="spinner" style="display: none;"></span>
+                            </button>
+                        </form>
+
+                        <!-- Pipeline Status Output Interface -->
+                        <div class="pipeline-console-output" id="pipeline-console" style="display: none;">
+                            <div class="console-line"><span class="c-time">[12:00:00]</span> <span class="c-info">INFO:</span> Initializing contact deployment pipeline...</div>
+                            <div class="console-line"><span class="c-time">[12:00:01]</span> <span class="c-info">INFO:</span> Validating sender payload parameters...</div>
+                            <div class="console-line" id="console-validation-step"><span class="c-time">[12:00:01]</span> <span class="c-success">SUCCESS:</span> Payload structural validation passed.</div>
+                            <div class="console-line"><span class="c-time">[12:00:02]</span> <span class="c-info">INFO:</span> Establishing secure endpoint tunnel...</div>
+                            <div class="console-line"><span class="c-time">[12:00:03]</span> <span class="c-info">INFO:</span> Deploying message packet to AWS Simple Email Service (SES) API...</div>
+                            <div class="console-line success-final" id="console-success-step" style="display: none;">
+                                <span class="c-time">[12:00:04]</span> <span class="c-success">SUCCESS:</span> Deployment complete! Message sent successfully. Thank you, AMARAPU BHANU PRASAD will get back to you shortly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portfolio-footer">
+        <div class="footer-container">
+            <p>Made with <span class="heart-icon">❤️</span> by AMARAPU BHANU PRASAD</p>
+            <p class="footer-meta">AWS Cloud & DevOps Platform | &copy; <span id="current-year">2026</span> All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Project Details Modal Popup -->
+    <div id="project-detail-modal" class="modal-overlay">
+        <div class="modal-wrapper">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-header-visual">
+                <div class="modal-visual-gradient"></div>
+                <div class="modal-icon-container">
+                    <i id="modal-icon" data-lucide="database"></i>
+                </div>
+            </div>
+            <div class="modal-content-container">
+                <div class="modal-meta-row">
+                    <span id="modal-badge" class="project-badge">Enterprise Cloud Storage</span>
+                    <div class="modal-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Commits</span>
+                            <span id="stat-commits" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Stars</span>
+                            <span id="stat-stars" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">PRs</span>
+                            <span id="stat-prs" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 id="modal-title" class="modal-title">Project Title</h3>
+                
+                <p id="modal-description" class="modal-description">Project description goes here...</p>
+                
+                <h4 class="modal-section-title">Deployment Stack & Technologies</h4>
+                <div id="modal-tech-stack" class="modal-tech-stack">
+                    <!-- Tech badges will be appended here dynamically -->
+                </div>
+                
+                <div class="modal-actions">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn modal-action-btn github-action-btn" id="modal-repo-link">
+                        <i data-lucide="github"></i> Repository Code
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn modal-action-btn demo-action-btn" id="modal-demo-link">
+                        <i data-lucide="external-link"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>

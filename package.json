@@ -1,0 +1,17 @@
+{
+  "name": "bhanu-prasad-portfolio",
+  "version": "1.0.0",
+  "description": "AWS Cloud & DevOps Engineer Portfolio website for Bhanu Prasad Amarapu.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y http-server . -p 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "aws",
+    "devops",
+    "cloud"
+  ],
+  "author": "Bhanu Prasad Amarapu",
+  "license": "ISC"
+}
