@@ -300,7 +300,7 @@ export default function App() {
   // Typewriter Greeting Lines
   const typewriterLines = [
     { text: "hello recruiters", className: "intro-line greeting" },
-    { text: "iam", className: "intro-line im" },
+    { text: "I'M", className: "intro-line im" },
     { text: "AMARAPU BHANU PRASAD", className: "intro-line name" },
     { text: "AWS devops engineer", className: "intro-line role" },
     { text: "hire me", className: "intro-line status" }
