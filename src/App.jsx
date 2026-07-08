@@ -187,7 +187,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   // GitHub integration state
-  const [gitUsername, setGitUsername] = useState('BhanuPrasad-Amarapu');
+  const [gitUsername, setGitUsername] = useState('BhanuAmarapu');
   const [gitStats, setGitStats] = useState({
     repos: 12,
     stars: 3,

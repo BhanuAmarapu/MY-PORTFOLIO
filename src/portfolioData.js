@@ -10,8 +10,8 @@ export const portfolioData = {
     email: "amarapubhanu7@gmail.com",
     phone: "+91 8919065413",
     location: "Parvathipuram, Andhra Pradesh, India",
-    github: "https://github.com/BhanuPrasad-Amarapu",
-    linkedin: "https://linkedin.com",
+    github: "https://github.com/BhanuAmarapu?tab=repositories",
+    linkedin: "https://www.linkedin.com/in/amarapu-bhanu-prasad-a43254335",
     resumeUrl: "Bhanu_Resume_102.pdf"
   },
   
@@ -319,7 +319,7 @@ export const portfolioData = {
       subtitle: "MCA Mini-Project — JNTU-GV",
       desc: "An integrated academic resource management platform developed to centralize scattered learning materials. Built with React.js frontend, Flask backend, and MySQL database. Implemented JWT-based authentication, role-based access control, advanced search with full-text indexing, and secure file upload system. Containerized application using Docker for consistent development and deployment environments. Successfully reduced student search time by 95% and faculty workload by 40%.",
       tech: ["Python", "Flask", "React.js", "MySQL", "JWT", "Docker", "AWS DevOps S3", "REST API", "Docker Compose"],
-      githubUrl: "https://github.com/BhanuPrasad-Amarapu/StudyStream",
+      githubUrl: "https://github.com/BhanuAmarapu/StudyStream",
       demoUrl: "https://github.com",
       badge: "Academic Management",
       icon: "book-open",
@@ -333,7 +333,7 @@ export const portfolioData = {
       subtitle: "Cloud Security & ML Project",
       desc: "Designed an intelligent hybrid cloud storage system implementing ML-assisted secure deduplication using Decision Tree prediction, SHA-256 hashing, and TF-IDF similarity detection. Integrated Convergent Narrowing Storage (CNS) with AES-256 convergent encryption to ensure unique ciphertext storage and enhanced data security. Extended content intelligence using OCR for image text extraction and Whisper-based speech-to-text processing for multi-format similarity analysis. Deployed hybrid architecture with AWS DevOps S3 integration, RBAC security, integrity auditing, and real-time monitoring dashboards for scalable enterprise-grade storage optimization.",
       tech: ["Python", "Flask", "Machine Learning (TF-IDF, Decision Trees)", "AWS DevOps S3", "Boto3", "Cryptography", "OCR", "Whisper", "SQLAlchemy"],
-      githubUrl: "https://github.com/BhanuPrasad-Amarapu/Cloud-Deduplication",
+      githubUrl: "https://github.com/BhanuAmarapu/Cloud-Deduplication",
       demoUrl: "https://github.com",
       badge: "Enterprise Cloud Storage",
       icon: "database",
