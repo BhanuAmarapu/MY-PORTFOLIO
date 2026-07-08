@@ -99,11 +99,102 @@ const SkillCard = ({ name, tooltip, experience, percentage, iconClass }) => {
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [preloaderFaded, setPreloaderFaded] = useState(false);
-  const [typedLines, setTypedLines] = useState([]);
-  const [currentText, setCurrentText] = useState('');
-  const [showEnterButton, setShowEnterButton] = useState(false);
-  const [currentLineClass, setCurrentLineClass] = useState('intro-line greeting');
+  const [preloaderActive, setPreloaderActive] = useState(true);
+  const [loadingPhase, setLoadingPhase] = useState(true);
   const [centerpieceActive, setCenterpieceActive] = useState(false);
+
+  // Terminal typing loader states
+  const [loadingLines, setLoadingLines] = useState([]);
+  const [currentLoadingText, setCurrentLoadingText] = useState('');
+  const [loadingLogIndex, setLoadingLogIndex] = useState(0);
+
+  const loadingLogs = [
+    "Initializing Cloud Infrastructure...",
+    "Loading AWS DevOps Services...",
+    "Starting CI/CD Deployment Pipeline...",
+    "Provisioning Terraform Landing Zone...",
+    "Deploying Portfolio Assets...",
+    "Ready."
+  ];
+
+  useEffect(() => {
+    if (!loadingPhase) return;
+    let charIndex = 0;
+    let timer;
+
+    const typeLogLine = () => {
+      if (loadingLogIndex < loadingLogs.length) {
+        const currentLineText = loadingLogs[loadingLogIndex];
+        if (charIndex < currentLineText.length) {
+          setCurrentLoadingText(prev => prev + currentLineText.charAt(charIndex));
+          charIndex++;
+          timer = setTimeout(typeLogLine, 35);
+        } else {
+          setLoadingLines(prev => [...prev, currentLineText]);
+          setCurrentLoadingText('');
+          setLoadingLogIndex(prev => prev + 1);
+        }
+      } else {
+        timer = setTimeout(() => {
+          setLoadingPhase(false);
+        }, 800);
+      }
+    };
+
+    timer = setTimeout(typeLogLine, 400);
+    return () => clearTimeout(timer);
+  }, [loadingLogIndex, loadingPhase]);
+
+  // Landing page role cycling typewriter
+  const landingRoles = [
+    "AWS DevOps Engineer",
+    "Cloud Engineer",
+    "DevOps Automation Enthusiast",
+    "CI/CD Pipeline Builder",
+    "Docker & Kubernetes Learner"
+  ];
+  const [roleText, setRoleText] = useState('');
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [roleCharIdx, setRoleCharIdx] = useState(0);
+  const [roleIsDeleting, setRoleIsDeleting] = useState(false);
+
+  useEffect(() => {
+    if (loadingPhase) return;
+    let timer;
+    const currentRole = landingRoles[roleIdx];
+    
+    const tick = () => {
+      if (roleIsDeleting) {
+        setRoleText(currentRole.substring(0, roleCharIdx - 1));
+        setRoleCharIdx(prev => prev - 1);
+      } else {
+        setRoleText(currentRole.substring(0, roleCharIdx + 1));
+        setRoleCharIdx(prev => prev + 1);
+      }
+
+      let speed = roleIsDeleting ? 40 : 80;
+
+      if (!roleIsDeleting && roleCharIdx === currentRole.length) {
+        speed = 2200;
+        setRoleIsDeleting(true);
+      } else if (roleIsDeleting && roleCharIdx === 0) {
+        setRoleIsDeleting(false);
+        setRoleIdx(prev => (prev + 1) % landingRoles.length);
+        speed = 400;
+      }
+
+      timer = setTimeout(tick, speed);
+    };
+
+    timer = setTimeout(tick, 100);
+    return () => clearTimeout(timer);
+  }, [roleCharIdx, roleIsDeleting, roleIdx, loadingPhase]);
+
+  // Mouse coordinate tracking on preloader
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const handlePreloaderMouseMove = (e) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
   
   // Project detail modal state
   const [selectedProject, setSelectedProject] = useState(null);
@@ -297,14 +388,7 @@ export default function App() {
     }, 3200);
   };
 
-  // Typewriter Greeting Lines
-  const typewriterLines = [
-    { text: "hello recruiters", className: "intro-line greeting" },
-    { text: "I'M", className: "intro-line im" },
-    { text: "AMARAPU BHANU PRASAD", className: "intro-line name" },
-    { text: "AWS devops engineer", className: "intro-line role" },
-    { text: "hire me", className: "intro-line status" }
-  ];
+  // Preloader configs
 
   // Lucide helper mapper
   const renderIcon = (name, className = "") => {
@@ -349,54 +433,13 @@ export default function App() {
     document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
   }, [theme]);
 
-  // 2. Typewriter Effect Logic
-  useEffect(() => {
-    let lineIndex = 0;
-    let charIndex = 0;
-    let textAccumulator = '';
-    let timer;
-
-    const type = () => {
-      if (lineIndex < typewriterLines.length) {
-        const line = typewriterLines[lineIndex];
-        setCurrentLineClass(line.className);
-
-        if (charIndex < line.text.length) {
-          textAccumulator += line.text.charAt(charIndex);
-          setCurrentText(textAccumulator);
-          charIndex++;
-          timer = setTimeout(type, Math.random() * 20 + 15);
-        } else {
-          setTypedLines(prev => [...prev, line]);
-          setCurrentText('');
-          textAccumulator = '';
-          charIndex = 0;
-          lineIndex++;
-
-          let pause = 350;
-          if (lineIndex > 0) {
-            const prevLine = typewriterLines[lineIndex - 1];
-            if (prevLine.className.includes("name")) {
-              pause = 700;
-            } else if (prevLine.className.includes("status")) {
-              pause = 500;
-            }
-          }
-          timer = setTimeout(type, pause);
-        }
-      } else {
-        setShowEnterButton(true);
-      }
-    };
-
-    timer = setTimeout(type, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // 3. Enter Portfolio Trigger
+  // Enter Portfolio Trigger
   const handleEnterPortfolio = () => {
     setPreloaderFaded(true);
     document.body.style.overflow = '';
+    setTimeout(() => {
+      setPreloaderActive(false);
+    }, 1000);
   };
 
   // 4. Custom Cursor Ring tick
@@ -763,33 +806,70 @@ export default function App() {
       <div ref={ringRef} id="custom-cursor-ring"></div>
       <div ref={dotRef} id="custom-cursor-dot"></div>
 
-      {/* Cinematic Typewriter Preloader */}
-      {!preloaderFaded && (
-        <div id="preloader">
-          <div className="preloader-intro-container">
-            <div id="intro-text-flow">
-              {typedLines.map((line, idx) => (
-                <div key={idx} className={line.className} style={{ opacity: 1, transform: 'translateY(0)' }}>
-                  {line.text}
-                </div>
-              ))}
-            </div>
-            {!showEnterButton && (
-              <div id="intro-typing-container">
-                <span className={currentLineClass} style={{ opacity: 1, transform: 'translateY(0)' }}>{currentText}</span>
-                <span className="typing-cursor">|</span>
+      {/* Cinematic Typewriter Preloader & Landing Screen */}
+      {preloaderActive && (
+        <div 
+          id="preloader" 
+          className={preloaderFaded ? "preloader-fade-out" : ""}
+          onMouseMove={handlePreloaderMouseMove}
+          style={{ 
+            '--mouse-x': `${mousePos.x}px`, 
+            '--mouse-y': `${mousePos.y}px` 
+          }}
+        >
+          {loadingPhase ? (
+            /* Phase 1: Interactive Terminal Loading */
+            <div className="terminal-loader-box">
+              <div className="terminal-loader-header">
+                <span className="terminal-dot red"></span>
+                <span className="terminal-dot yellow"></span>
+                <span className="terminal-dot green"></span>
+                <span className="terminal-title" style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', marginLeft: '10px', fontFamily: 'monospace' }}>aws_devops_init.sh</span>
               </div>
-            )}
-            {showEnterButton && (
-              <button 
-                id="enter-portfolio-btn" 
-                className="cinematic-enter-btn"
-                onClick={handleEnterPortfolio}
-              >
-                [ ENTER PORTFOLIO ]
-              </button>
-            )}
-          </div>
+              <div className="terminal-loader-body">
+                {loadingLines.map((line, idx) => (
+                  <div key={idx} className="terminal-log-line">
+                    <span style={{ color: 'var(--aws-orange)' }}>&gt;</span> {line}
+                  </div>
+                ))}
+                {loadingLogIndex < loadingLogs.length && (
+                  <div className="terminal-log-line active">
+                    <span style={{ color: 'var(--aws-orange)' }}>&gt;</span> {currentLoadingText}
+                    <span className="typing-cursor">|</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            /* Phase 2: Cinematic Landing Screen Card */
+            <div className="landing-card glass-card">
+              <span className="landing-tag">WELCOME RECRUITER</span>
+              <h1 className="landing-title">
+                Hello Recruiter 👋<br />
+                I'm <span className="highlight-orange">Amarapu Bhanu Prasad</span>
+              </h1>
+              <div className="landing-role-container">
+                <span className="landing-role">{roleText}</span>
+                <span className="role-cursor">|</span>
+              </div>
+              <p className="landing-description">
+                Thank you for visiting my portfolio. I am passionate about building scalable cloud infrastructure, automating deployments, and designing reliable DevOps solutions using AWS, Docker, Jenkins, Kubernetes, Terraform, and modern CI/CD practices. I enjoy solving real-world infrastructure challenges and continuously improving deployment automation.
+              </p>
+              <div className="landing-actions">
+                <button className="btn btn-primary enter-portfolio-btn" onClick={handleEnterPortfolio}>
+                  🚀 Enter Portfolio
+                </button>
+                <a 
+                  href={portfolioData.personal.resumeUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-secondary download-resume-btn"
+                >
+                  📄 Download Resume
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

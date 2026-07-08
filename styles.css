@@ -2378,38 +2378,50 @@ section {
 }
 
 /* Preloader Screen */
+/* Preloader Screen & Landing Page */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Moving dark gradient background */
-    background: linear-gradient(-45deg, #070707, #21150f, #0d0d0d, #1c110a);
+    /* Dark futuristic background with moving gradient */
+    background: linear-gradient(-45deg, #090e1c, #07070a, #0e1628, #050507);
     background-size: 400% 400%;
-    animation: preloaderGradientBG 12s ease infinite;
+    animation: preloaderGradientBG 15s ease infinite;
     z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                visibility 0.8s ease, 
-                transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.25, 1), 
+                visibility 1s ease, 
+                transform 1s cubic-bezier(0.25, 1, 0.25, 1);
     transform: scale(1);
-    font-family: 'Satisfy', 'Poppins', cursive, sans-serif;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    overflow: hidden;
 }
 
 #preloader::before {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Subtle neon scan grid lines overlay */
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
-                linear-gradient(90deg, rgba(255, 153, 0, 0.015) 1px, transparent 1px),
-                linear-gradient(rgba(255, 153, 0, 0.015) 1px, transparent 1px);
-    background-size: 100% 4px, 32px 32px, 32px 32px;
+    /* Subtle cyber-grid network lines & scanlines overlay */
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.015) 1px, transparent 1px),
+                linear-gradient(rgba(56, 189, 248, 0.015) 1px, transparent 1px);
+    background-size: 100% 4px, 40px 40px, 40px 40px;
     z-index: -1;
-    opacity: 0.65;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Mouse-following cursor glow */
+#preloader::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 153, 0, 0.05), transparent 45%);
+    z-index: 0;
     pointer-events: none;
 }
 
@@ -2422,129 +2434,62 @@ section {
 #preloader.preloader-fade-out {
     opacity: 0;
     visibility: hidden;
-    transform: scale(1.15);
+    transform: scale(0.92); /* Zoom-out transition */
     pointer-events: none;
 }
 
-.preloader-intro-container {
+/* Phase 1: Terminal Loader Box */
+.terminal-loader-box {
+    background: rgba(11, 15, 26, 0.85);
+    border: 1px solid rgba(255, 153, 0, 0.25);
+    border-radius: 12px;
     width: 90%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 20px;
+    max-width: 620px;
+    padding: 35px 30px;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 
+                0 0 40px rgba(255, 153, 0, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
-#intro-text-flow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-}
-
-.intro-line {
-    font-family: 'Satisfy', 'Poppins', cursive, sans-serif;
-    line-height: 1.4;
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.intro-line.greeting {
-    font-size: 2.8rem;
-    color: #38bdf8; /* cyan */
-    margin-bottom: 5px;
-    font-weight: 500;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 20px rgba(56, 189, 248, 0.25);
-    text-transform: capitalize;
-}
-
-.intro-line.im {
-    font-size: 2.2rem;
-    color: #fffdd0; /* cream gold */
-    font-style: italic;
-    margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(255, 253, 208, 0.4);
-}
-
-.intro-line.name {
-    font-size: 4.5rem;
-    font-weight: bold;
-    color: var(--aws-orange); /* neon orange */
-    letter-spacing: 2px;
-    margin: 5px 0 15px 0;
-    animation: pulseNameGlow 1.8s infinite alternate;
-}
-
-@keyframes pulseNameGlow {
-    0% {
-        text-shadow: 0 0 12px rgba(255, 153, 0, 0.55), 0 0 22px rgba(255, 153, 0, 0.25);
-    }
-    100% {
-        text-shadow: 0 0 30px rgba(255, 153, 0, 0.95), 0 0 50px rgba(255, 153, 0, 0.55);
-    }
-}
-
-.intro-line.role {
-    font-size: 2.5rem;
-    color: #22c55e; /* emerald green */
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px rgba(34, 197, 94, 0.6), 0 0 22px rgba(34, 197, 94, 0.25);
-}
-
-.intro-line.tagline {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-    margin-top: 15px;
-    border-bottom: 1px dashed rgba(255, 153, 0, 0.2);
-    padding-bottom: 8px;
-    width: 80%;
-    max-width: 480px;
-}
-
-.intro-line.status {
-    font-size: 2.6rem;
-    color: #ff2a5f; /* neon pink/red */
-    font-weight: bold;
-    margin-top: 10px;
-    letter-spacing: 2px;
-    animation: pulseStatusGlow 1.8s infinite alternate;
-}
-
-@keyframes pulseStatusGlow {
-    0% {
-        text-shadow: 0 0 12px rgba(255, 42, 95, 0.55), 0 0 22px rgba(255, 42, 95, 0.25);
-    }
-    100% {
-        text-shadow: 0 0 30px rgba(255, 42, 95, 0.95), 0 0 50px rgba(255, 42, 95, 0.55);
-    }
-}
-
-#intro-typing-container {
+.terminal-loader-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 15px;
-    min-height: 3.5rem;
-    width: 100%;
+    gap: 8px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
 }
 
-#intro-typing {
-    font-family: 'Satisfy', 'Poppins', cursive, sans-serif;
-    line-height: 1.3;
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.terminal-dot.red { background: #ff5f56; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #27c93f; }
+
+.terminal-loader-body {
+    color: #e2e8f0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.terminal-log-line {
+    margin-bottom: 10px;
+    color: #38bdf8; /* Cyan */
+}
+
+.terminal-log-line.active {
+    color: #ffffff;
 }
 
 .typing-cursor {
     color: var(--aws-orange);
     font-weight: bold;
-    font-size: 2.2rem;
-    margin-left: 4px;
     animation: blinkCaret 0.8s step-end infinite;
 }
 
@@ -2553,30 +2498,195 @@ section {
     50% { color: var(--aws-orange); }
 }
 
-.cinematic-enter-btn {
-    align-self: center;
-    background: rgba(255, 153, 0, 0.05);
-    border: 1px solid rgba(255, 153, 0, 0.4);
-    color: var(--aws-orange);
-    padding: 14px 42px;
+/* Phase 2: Cinematic Landing Screen Card */
+.landing-card {
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 20px;
+    padding: 55px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
+                0 0 50px rgba(255, 153, 0, 0.05);
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    animation: landingCardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes landingCardFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
+.landing-tag {
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 1.15rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 35px;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 0 15px rgba(255, 153, 0, 0.03);
-    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--aws-orange); /* AWS Orange */
+    text-shadow: 0 0 10px rgba(255, 153, 0, 0.35);
     text-transform: uppercase;
 }
 
-.cinematic-enter-btn:hover {
-    background: var(--aws-orange);
-    color: #0B0B0B;
-    border-color: var(--aws-orange);
-    box-shadow: 0 0 30px rgba(255, 153, 0, 0.45);
-    transform: scale(1.03);
+.landing-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+    margin: 5px 0;
+}
+
+.landing-role-container {
+    height: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.landing-role {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #38bdf8; /* Cyan Blue */
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.45);
+}
+
+.role-cursor {
+    color: #38bdf8;
+    font-size: 2rem;
+    font-weight: bold;
+    animation: blinkCaret 0.8s step-end infinite;
+    margin-left: 5px;
+}
+
+.landing-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.75;
+    max-width: 680px;
+    margin: 10px 0 20px 0;
+}
+
+.landing-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Primary Button with animated gradient border */
+.enter-portfolio-btn {
+    position: relative;
+    background: rgba(255, 153, 0, 0.15) !important;
+    border: 1px solid rgba(255, 153, 0, 0.35) !important;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 15px 40px !important;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 1;
+    overflow: hidden;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    box-shadow: 0 0 20px rgba(255, 153, 0, 0.1);
+}
+
+.enter-portfolio-btn::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(90deg, #ff9900, #38bdf8, #ff2a5f, #ff9900);
+    background-size: 300% 100%;
+    z-index: -1;
+    border-radius: 6px;
+    animation: borderGlow 4s linear infinite;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+.enter-portfolio-btn:hover {
+    background: var(--aws-orange) !important;
+    color: #0b0b0d !important;
+    box-shadow: 0 0 35px rgba(255, 153, 0, 0.45) !important;
+    transform: scale(1.04);
+}
+
+.enter-portfolio-btn:hover::before {
+    opacity: 0;
+}
+
+/* Secondary Button glassmorphic style */
+.download-resume-btn {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 15px 40px !important;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-resume-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.15) !important;
+    transform: scale(1.04);
+}
+
+/* Mobile Responsiveness for landing card */
+@media (max-width: 768px) {
+    .landing-card {
+        padding: 35px 25px;
+        gap: 18px;
+    }
+    .landing-title {
+        font-size: 2.2rem;
+    }
+    .landing-role {
+        font-size: 1.4rem;
+    }
+    .landing-role-container {
+        height: 2.8rem;
+    }
+    .landing-description {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+    .landing-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .enter-portfolio-btn, .download-resume-btn {
+        width: 100%;
+        padding: 12px 30px !important;
+        font-size: 1rem;
+    }
 }
 
 /* Page Entrance Transitions */
