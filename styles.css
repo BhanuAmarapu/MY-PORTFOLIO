@@ -1736,6 +1736,14 @@ section {
     color: var(--emerald-green);
 }
 
+.widget-value.text-orange {
+    color: var(--aws-orange);
+}
+
+.widget-value.text-red {
+    color: #ef4444;
+}
+
 .widget-icon {
     position: absolute;
     top: 20px;
@@ -1748,6 +1756,16 @@ section {
 
 .widget-icon.green {
     color: var(--emerald-green);
+    opacity: 1;
+}
+
+.widget-icon.orange {
+    color: var(--aws-orange);
+    opacity: 1;
+}
+
+.widget-icon.red {
+    color: #ef4444;
     opacity: 1;
 }
 

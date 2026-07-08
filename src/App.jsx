@@ -4,8 +4,11 @@ import {
   Cloud, Terminal, Box, Layers, Cpu, Award, GraduationCap, 
   Github, Linkedin, ExternalLink, Eye, Download, Phone, 
   Mail, MapPin, CheckCircle, FolderGit2, Star, Users, 
-  BarChart2, Sun, Moon, Send, X, ChevronRight
+  BarChart2, Sun, Moon, Send, X, ChevronRight,
+  GitCommit, Search, Play, BookOpen, FileText, User, MessageSquare,
+  Layout, ChevronDown
 } from 'lucide-react';
+
 
 // Reusable SkillCard Component with 3D Tilt & Localized Spotlight Glow
 const SkillCard = ({ name, tooltip, experience, percentage, iconClass }) => {
@@ -116,21 +119,191 @@ export default function App() {
   });
   const [loadingGit, setLoadingGit] = useState(false);
 
+  // Academic Hub State
+  const [hubSearch, setHubSearch] = useState('');
+  const [hubFilter, setHubFilter] = useState('all');
+
+  // Filtered resources based on search and category tab
+  const filteredResources = (portfolioData.resources || []).filter(res => {
+    const matchesFilter = hubFilter === 'all' || res.category === hubFilter;
+    const matchesSearch = !hubSearch.trim() ||
+      res.title?.toLowerCase().includes(hubSearch.toLowerCase()) ||
+      res.desc?.toLowerCase().includes(hubSearch.toLowerCase()) ||
+      res.tags?.toLowerCase().includes(hubSearch.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
+
+  // Typewriter Effect for the Hero Subtitle
+  const [heroSubtitleText, setHeroSubtitleText] = useState('');
+  useEffect(() => {
+    const roles = portfolioData.personal.subRoles || [
+      "AWS DevOps Engineer",
+      "GitOps & CI/CD Specialist",
+      "Infrastructure Automation Engineer"
+    ];
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    let timer;
+
+    const typeRole = () => {
+      const currentRole = roles[roleIdx];
+      if (isDeleting) {
+        setHeroSubtitleText(currentRole.substring(0, charIdx - 1));
+        charIdx--;
+      } else {
+        setHeroSubtitleText(currentRole.substring(0, charIdx + 1));
+        charIdx++;
+      }
+
+      let speed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIdx === currentRole.length) {
+        speed = 2000; // pause at end of word
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        speed = 500; // pause before typing next
+      }
+
+      timer = setTimeout(typeRole, speed);
+    };
+
+    timer = setTimeout(typeRole, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Contact Form pipeline terminal simulator state
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [showConsole, setShowConsole] = useState(false);
+  const [validationLine, setValidationLine] = useState('');
+  const [successLine, setSuccessLine] = useState('');
+
+  // GitHub contributions mockup cells
+  const [activityCells, setActivityCells] = useState([]);
+
   // References
   const canvasRef = useRef(null);
   const ringRef = useRef(null);
   const dotRef = useRef(null);
 
+  // Theme toggle handler
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
+  // GitHub API Fetcher
+  const fetchGitData = async (username) => {
+    if (!username.trim()) return;
+    setLoadingGit(true);
+    try {
+      const userRes = await fetch(`https://api.github.com/users/${username}`);
+      if (!userRes.ok) throw new Error('GitHub profile not found');
+      const userData = await userRes.json();
+      
+      const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+      let starCount = 0;
+      if (reposRes.ok) {
+        const reposData = await reposRes.json();
+        starCount = reposData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+      }
+      
+      setGitStats({
+        repos: userData.public_repos,
+        stars: starCount,
+        commits: 145,
+        status: 'STABLE',
+        statusClass: 'widget-value text-green'
+      });
+    } catch (error) {
+      console.warn(`Failed to fetch GitHub profile for '${username}'. Using cached/mock statistics.`);
+      setGitStats({
+        repos: 12,
+        stars: 3,
+        commits: 145,
+        status: 'CACHED',
+        statusClass: 'widget-value text-orange'
+      });
+    } finally {
+      setLoadingGit(false);
+    }
+  };
+
+  // Fetch GitHub data on load
+  useEffect(() => {
+    fetchGitData(gitUsername);
+  }, []);
+
+  // Generate GitHub mock activity cells
+  useEffect(() => {
+    const cells = [];
+    const totalCells = 24 * 7;
+    const today = new Date();
+    for (let i = 0; i < totalCells; i++) {
+      const rnd = Math.random();
+      let level = 0;
+      if (rnd > 0.85) level = 4;
+      else if (rnd > 0.70) level = 3;
+      else if (rnd > 0.50) level = 2;
+      else if (rnd > 0.20) level = 1;
+      
+      const cellDate = new Date();
+      cellDate.setDate(today.getDate() - (totalCells - i));
+      const formattedDate = cellDate.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+      const count = level === 0 ? 'No' : level * 2 + Math.floor(Math.random() * 2);
+      cells.push({ level, date: formattedDate, count });
+    }
+    setActivityCells(cells);
+  }, [gitStats]);
+
+  // Handle Academic Hub card click
+  const handlePlaceholderClick = (e) => {
+    e.preventDefault();
+    alert("This is an academic resource hub placeholder. In production, this launches a PDF reader, a GitHub repository link, or reference materials.");
+  };
+
+  // Handle Contact Form submission terminal simulation
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const name = data.get('name');
+    const email = data.get('email');
+    const subject = data.get('subject');
+    const message = data.get('message');
+    
+    if (!name || !email || !subject || !message) return;
+    
+    setFormSubmitting(true);
+    setShowConsole(true);
+    setValidationLine('');
+    setSuccessLine('');
+    
+    setTimeout(() => {
+      const timeStr = new Date().toLocaleTimeString();
+      setValidationLine(`[${timeStr}] SUCCESS: Payload validation passed (Sender: "${name}", Email: "${email}").`);
+    }, 1000);
+    
+    setTimeout(() => {
+      const timeStr = new Date().toLocaleTimeString();
+      setSuccessLine(`[${timeStr}] SUCCESS: Message deployed successfully via SES API tunnel! Response code: 200.`);
+      alert("Deployment successful! Your message has been sent to Bhanu Prasad Amarapu.");
+      e.target.reset();
+      setFormSubmitting(false);
+    }, 3200);
+  };
+
   // Typewriter Greeting Lines
   const typewriterLines = [
-    { text: "Hello Recruiter 👋", className: "intro-line greeting" },
-    { text: "I'm", className: "intro-line im" },
-    { text: "AMARAPU BHANU PRASAD", className: "intro-line name" },
-    { text: "AWS DevOps Engineer", className: "intro-line role" },
-    { text: "GitOps & CI/CD Specialist", className: "intro-line role" },
-    { text: "Infrastructure Automation Specialist", className: "intro-line role" },
-    { text: "Turning Ideas into Scalable Cloud Solutions.", className: "intro-line tagline" },
-    { text: "Ready to Build. Ready to Deploy. Ready to Innovate.", className: "intro-line status" }
+    { text: "hello recruiters", className: "intro-line greeting" },
+    { text: "iam", className: "intro-line im" },
+    { text: "amarapu bhanu prasad", className: "intro-line name" },
+    { text: "AWS devops engineer", className: "intro-line role" },
+    { text: "hire", className: "intro-line status" }
   ];
 
   // Lucide helper mapper
@@ -160,6 +333,13 @@ export default function App() {
       case 'moon': return <Moon className={className} />;
       case 'send': return <Send className={className} />;
       case 'x': return <X className={className} />;
+      case 'git-commit': return <GitCommit className={className} />;
+      case 'search': return <Search className={className} />;
+      case 'play': return <Play className={className} />;
+      case 'book-open': return <BookOpen className={className} />;
+      case 'file-text': return <FileText className={className} />;
+      case 'user': return <User className={className} />;
+      case 'message-square': return <MessageSquare className={className} />;
       default: return <Cloud className={className} />;
     }
   };
@@ -433,7 +613,7 @@ export default function App() {
       terraformGroup.position.set(50, -40, -20);
       scene.add(terraformGroup);
 
-      // AWS Nodes
+      // AWS DevOps Nodes
       const nodeGeom = new window.THREE.SphereGeometry(4, 16, 16);
       const nodeMat = new window.THREE.MeshBasicMaterial({ color: 0xff9900, transparent: true, opacity: 0.8 });
       for (let i = 0; i < 5; i++) {
@@ -573,12 +753,6 @@ export default function App() {
     };
   }, [preloaderFaded]);
 
-  // Form submit handler
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    alert("Connection Protocol Completed! Your message has been simulated through the DevOps contact pipeline successfully.");
-    e.target.reset();
-  };
 
   return (
     <>
@@ -595,14 +769,14 @@ export default function App() {
           <div className="preloader-intro-container">
             <div id="intro-text-flow">
               {typedLines.map((line, idx) => (
-                <div key={idx} className={line.className}>
+                <div key={idx} className={line.className} style={{ opacity: 1, transform: 'translateY(0)' }}>
                   {line.text}
                 </div>
               ))}
             </div>
             {!showEnterButton && (
               <div id="intro-typing-container">
-                <span className={currentLineClass}>{currentText}</span>
+                <span className={currentLineClass} style={{ opacity: 1, transform: 'translateY(0)' }}>{currentText}</span>
                 <span className="typing-cursor">|</span>
               </div>
             )}
@@ -625,169 +799,193 @@ export default function App() {
         {/* Background canvas */}
         <canvas ref={canvasRef} id="particle-canvas"></canvas>
 
-        {/* Navigation Bar */}
-        <nav id="navbar" className={preloaderFaded ? 'nav-visible' : ''}>
+        {/* Header / Navigation */}
+        <header className={`navbar-header ${preloaderFaded ? 'nav-visible' : ''}`} id="navbar">
           <div className="nav-container">
-            <a href="#home" className="nav-logo">
-              <span>&gt;_ </span>{portfolioData.personal.name.split(" ")[0]}.<span className="orange-accent">Cloud</span>
+            <a href="#home" className="nav-logo" id="nav-logo-link">
+              <span className="logo-terminal">&gt;_</span>
+              <span className="logo-text">ABP<span className="logo-accent"> devops</span></span>
             </a>
             
-            <div className="nav-links">
-              <a href="#home" className="nav-link">Home</a>
-              <a href="#about" className="nav-link">About</a>
-              <a href="#skills" className="nav-link">Skills</a>
-              <a href="#projects" className="nav-link">Projects</a>
-              <a href="#future-projects" className="nav-link">Future Projects</a>
-              <a href="#resume" className="nav-link">Resume</a>
-              <a href="#experience" className="nav-link">Experience</a>
-              <a href="#contact" className="nav-link">Contact</a>
-            </div>
+            <nav className="nav-links-wrapper" id="nav-menu">
+              <a href="#home" className="nav-link active" id="nav-link-home">Home</a>
+              <a href="#about" className="nav-link" id="nav-link-about">About</a>
+              <a href="#skills" className="nav-link" id="nav-link-skills">Skills</a>
+              <a href="#projects" className="nav-link" id="nav-link-projects">Projects</a>
+              <a href="#future-projects" className="nav-link" id="nav-link-future">Future Projects</a>
+              <a href="#academic-hub" className="nav-link" id="nav-link-hub">Resource Hub</a>
+              <a href="#resume" className="nav-link" id="nav-link-resume">Resume</a>
+              <a href="#experience" className="nav-link" id="nav-link-experience">Experience</a>
+              <a href="#github-stats" className="nav-link" id="nav-link-github">GitHub</a>
+              <a href="#contact" className="nav-link" id="nav-link-contact">Contact</a>
+            </nav>
 
-            <button 
-              className="theme-toggle-btn" 
-              onClick={toggleTheme}
-              aria-label="Toggle visual theme"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            <div className="nav-controls">
+              <button 
+                className="theme-toggle-btn" 
+                id="theme-toggle" 
+                onClick={toggleTheme} 
+                aria-label="Toggle Dark/Light Mode" 
+                title="Toggle Mode"
+              >
+                {theme === 'dark' ? <Sun size={18} className="sun-icon" /> : <Moon size={18} className="moon-icon" />}
+              </button>
+              <button className="mobile-menu-btn" id="nav-menu-toggle" aria-label="Toggle Navigation Menu">
+                <span className="bar"></span>
+                <span className="bar"></span>
+                <span className="bar"></span>
+              </button>
+            </div>
           </div>
-        </nav>
+        </header>
 
         {/* HERO SECTION */}
-        <section id="home" className={`hero-section scroll-offset ${preloaderFaded ? 'hero-visible' : ''}`}>
-          <div className="section-container">
-            <div className="hero-grid">
+        <section id="home" className={`hero-section ${preloaderFaded ? 'hero-visible' : ''}`}>
+          <div className="section-container hero-grid">
+            <div className={`hero-content ${preloaderFaded ? 'hero-animate-entrance' : ''}`}>
+              <div className="console-badge" id="hero-badge">
+                <span className="badge-dot"></span>
+                <span className="badge-text">SYSTEM STATUS: ONLINE</span>
+              </div>
+              <h1 className="hero-title">
+                <span className="greeting">Hello Recruiter 👋</span><br />
+                <span className="highlight-name">I'm {portfolioData.personal.name}</span>
+              </h1>
+              <h2 className="hero-subtitle">
+                <span id="typing-text">{heroSubtitleText}</span>
+                <span className="typing-cursor">|</span>
+              </h2>
+              <p className="hero-tagline">
+                Passionate cloud specialist focused on constructing highly available, secure, and fully automated cloud infrastructures. Leveraging modern GitOps strategies and programmatic scripting architectures to accelerate development loops.
+              </p>
               
-              {/* Left Column Biography */}
-              <div className="hero-bio-column">
-                <span className="hero-greeting">Hello Recruiter 👋</span>
-                
-                <h1 className="hero-main-title">
-                  I'm <span className="highlight-orange">{portfolioData.personal.name}</span>
-                </h1>
-                
-                <div className="hero-role-carousel">
-                  <span className="role-tagline">{portfolioData.personal.role}</span>
-                </div>
-
-                <p className="hero-abstract">
-                  Passionate cloud specialist focused on constructing highly available, secure, and fully automated cloud infrastructures. Leveraging modern GitOps strategies and programmatic scripting architectures to accelerate development loops.
-                </p>
-
-                <div className="hero-call-actions">
-                  <a href="#contact" className="btn btn-primary">
-                    <Mail size={16} /> Get In Touch
-                  </a>
-                  <a 
-                    href={portfolioData.personal.resumeUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="btn btn-secondary"
-                  >
-                    <Eye size={16} /> View Resume
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Column Interactive Avatar Centerpiece */}
-              <div className="hero-visual-column">
-                <div 
-                  className={`hero-avatar-centerpiece ${centerpieceActive ? 'active-reveal' : ''}`}
-                  onClick={() => setCenterpieceActive(prev => !prev)}
+              <div className="hero-actions">
+                <a href="#contact" className="btn btn-primary">
+                  <Mail size={16} /> Get In Touch
+                </a>
+                <a 
+                  href={portfolioData.personal.resumeUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-secondary"
                 >
-                  
-                  {/* Concentric HUD Orbits */}
-                  <div className="hud-ring ring-large"></div>
-                  <div className="hud-ring ring-medium"></div>
-                  <div className="hud-ring ring-small"></div>
-
-                  {/* Tech Floating Orbit Badges */}
-                  <div className="hud-tech-label label-terraform">IaC: Terraform</div>
-                  <div className="hud-tech-label label-kubernetes">Orchestration: K8s</div>
-                  <div className="hud-tech-label label-docker">Containers: Docker</div>
-                  <div className="hud-tech-label label-jenkins">CI/CD: Jenkins</div>
-                  <div className="hud-tech-label label-aws">Platform: AWS</div>
-                  <div className="hud-tech-label label-gitops">GitOps</div>
-
-                  {/* Avatar Ambient Glow */}
-                  <div className="avatar-ambient-glow"></div>
-                  
-                  {/* Pulsing Outer Rings */}
-                  <div className="avatar-pulsing-bangle"></div>
-                  
-                  {/* Real Profile Image circle */}
-                  <div className="avatar-frame">
-                    <img 
-                      src="profile.jpg" 
-                      alt={portfolioData.personal.name} 
-                      className="avatar-photo"
-                      onError={(e) => {
-                        e.target.src = "profile.png"; // Fallback
-                      }}
-                    />
-                  </div>
-
-                  {/* Floating Name Badge */}
-                  <div className="avatar-name-floating">{portfolioData.personal.name}</div>
-
-                  {/* Recruiter Telemetry Cards (Hover Reveal) */}
-                  <div className="impress-card pipeline-card">
-                    <div className="impress-card-header">
-                      <i className="pulsing-dot green"></i>
-                      <span className="impress-card-title">CI/CD Pipeline</span>
-                    </div>
-                    <div className="impress-card-body text-green">Status: Success</div>
-                  </div>
-
-                  <div className="impress-card deploy-card">
-                    <div className="impress-card-header">
-                      {renderIcon('cloud', 'impress-icon')}
-                      <span className="impress-card-title">AWS Infrastructure</span>
-                    </div>
-                    <div className="impress-card-body text-orange">Uptime: 99.99%</div>
-                  </div>
-
-                  <div className="impress-card infrastructure-card">
-                    <div className="impress-card-header">
-                      {renderIcon('terminal', 'impress-icon')}
-                      <span className="impress-card-title">IaC (Terraform)</span>
-                    </div>
-                    <div className="impress-card-body">Automation: 100%</div>
-                  </div>
-
-                  {/* Interactive Strengths Card (Fills left space) */}
-                  <div className="impress-card strengths-card">
-                    <div className="impress-card-header">
-                      {renderIcon('bar-chart-2', 'impress-icon')}
-                      <span className="impress-card-title">Core Strengths</span>
-                    </div>
-                    <div className="strengths-list">
-                      <div className="strength-item">
-                        <span className="strength-name">Cloud Automation</span>
-                        <div className="strength-bar">
-                          <div className="strength-fill strength-fill-automation" style={{ width: '0%' }}></div>
-                        </div>
-                      </div>
-                      <div className="strength-item">
-                        <span className="strength-name">CI/CD & GitOps</span>
-                        <div className="strength-bar">
-                          <div className="strength-fill strength-fill-gitops" style={{ width: '0%' }}></div>
-                        </div>
-                      </div>
-                      <div className="strength-item">
-                        <span className="strength-name">SRE & Monitoring</span>
-                        <div className="strength-bar">
-                          <div className="strength-fill strength-fill-sre" style={{ width: '0%' }}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
+                  <Eye size={16} /> View Resume
+                </a>
               </div>
+              
+              <div className="hero-socials">
+                <a href={portfolioData.personal.github} target="_blank" rel="noopener noreferrer" className="social-icon" id="hero-github-btn" aria-label="GitHub">
+                  <Github size={16} />
+                </a>
+                <a href={portfolioData.personal.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" id="hero-linkedin-btn" aria-label="LinkedIn">
+                  <Linkedin size={16} />
+                </a>
+                <a href="#contact" className="social-icon" id="hero-contact-btn" aria-label="Contact Email">
+                  <Mail size={16} />
+                </a>
+              </div>
+            </div>
 
+            <div className="hero-visual">
+              <div 
+                className={`hero-avatar-centerpiece ${centerpieceActive ? 'active-reveal' : ''}`}
+                onClick={() => setCenterpieceActive(prev => !prev)}
+                style={{ cursor: 'pointer' }}
+              >
+                {/* Concentric HUD Orbits */}
+                <div className="hud-ring ring-large"></div>
+                <div className="hud-ring ring-medium"></div>
+                <div className="hud-ring ring-small"></div>
+
+                {/* Tech Floating Orbit Badges */}
+                <div className="hud-tech-label label-terraform">IaC: Terraform</div>
+                <div className="hud-tech-label label-kubernetes">Orchestration: K8s</div>
+                <div className="hud-tech-label label-docker">Containers: Docker</div>
+                <div className="hud-tech-label label-jenkins">CI/CD: Jenkins</div>
+                <div className="hud-tech-label label-aws">Platform: AWS DevOps</div>
+                <div className="hud-tech-label label-gitops">GitOps</div>
+
+                {/* Avatar Ambient Glow */}
+                <div className="avatar-ambient-glow"></div>
+                
+                {/* Pulsing Outer Rings */}
+                <div className="avatar-pulsing-bangle"></div>
+                
+                {/* Real Profile Image circle */}
+                <div className="avatar-image-container">
+                  <img 
+                    src="profile.jpg" 
+                    alt={portfolioData.personal.name} 
+                    className="centerpiece-avatar"
+                    onError={(e) => {
+                      e.target.src = "profile.png"; // Fallback
+                    }}
+                  />
+                </div>
+
+                {/* Floating Name Badge */}
+                <div className="avatar-name-floating">{portfolioData.personal.name}</div>
+
+                {/* Recruiter Telemetry Cards (Hover Reveal) */}
+                <div className="impress-card pipeline-card">
+                  <div className="impress-card-header">
+                    <i className="pulsing-dot green"></i>
+                    <span className="impress-card-title">CI/CD Pipeline</span>
+                  </div>
+                  <div className="impress-card-body text-green">Status: Success</div>
+                </div>
+
+                <div className="impress-card deploy-card">
+                  <div className="impress-card-header">
+                    {renderIcon('cloud', 'impress-icon')}
+                    <span className="impress-card-title">AWS DevOps Infrastructure</span>
+                  </div>
+                  <div className="impress-card-body text-orange">Uptime: 99.99%</div>
+                </div>
+
+                <div className="impress-card infrastructure-card">
+                  <div className="impress-card-header">
+                    {renderIcon('terminal', 'impress-icon')}
+                    <span className="impress-card-title">IaC (Terraform)</span>
+                  </div>
+                  <div className="impress-card-body">Automation: 100%</div>
+                </div>
+
+                {/* Interactive Strengths Card (Fills left space) */}
+                <div className="impress-card strengths-card">
+                  <div className="impress-card-header">
+                    {renderIcon('bar-chart-2', 'impress-icon')}
+                    <span className="impress-card-title">Core Strengths</span>
+                  </div>
+                  <div className="strengths-list">
+                    <div className="strength-item">
+                      <span className="strength-name">Cloud Automation</span>
+                      <div className="strength-bar">
+                        <div className="strength-fill strength-fill-automation" style={{ width: '0%' }}></div>
+                      </div>
+                    </div>
+                    <div className="strength-item">
+                      <span className="strength-name">CI/CD & GitOps</span>
+                      <div className="strength-bar">
+                        <div className="strength-fill strength-fill-gitops" style={{ width: '0%' }}></div>
+                      </div>
+                    </div>
+                    <div className="strength-item">
+                      <span className="strength-name">SRE & Monitoring</span>
+                      <div className="strength-bar">
+                        <div className="strength-fill strength-fill-sre" style={{ width: '0%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
+          
+          <a href="#about" className="scroll-down-indicator" aria-label="Scroll to About Section">
+            <ChevronDown size={20} />
+          </a>
         </section>
 
         {/* ABOUT SECTION */}
@@ -812,7 +1010,7 @@ export default function App() {
               
               <div className="about-key-stats glass-card">
                 <div className="stat-bullet">
-                  <span className="bullet-num">AWS</span>
+                  <span className="bullet-num">AWS DevOps</span>
                   <span className="bullet-label">Infrastructure provisioning, IAM, VPC, EC2, S3, ECS, EKS</span>
                 </div>
                 <div className="stat-bullet">
@@ -837,22 +1035,30 @@ export default function App() {
               <div className="section-line"></div>
             </div>
 
-            <div className="skills-dashboard-panels">
+            <div className="skills-dashboard-panels" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
               {portfolioData.skillsCategories.map(cat => (
-                <div key={cat.id} className="skills-category-panel glass-card">
-                  <h3 className="category-panel-title">
+                <div key={cat.id} className="skills-category-panel glass-card" style={{ padding: '20px' }}>
+                  <h3 className="category-panel-title" style={{ borderBottom: '1px solid rgba(255, 153, 0, 0.25)', paddingBottom: '10px', marginBottom: '15px', color: 'var(--aws-orange)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.2rem', fontWeight: '600' }}>
                     <span className="category-emoji">{cat.emoji}</span> {cat.title}
                   </h3>
-                  <div className="skills-category-grid">
+                  <div className="skills-list-vertical" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {cat.skills.map(skill => (
-                      <SkillCard 
-                        key={skill.id}
-                        name={skill.name}
-                        tooltip={skill.tooltip}
-                        experience={skill.experience}
-                        percentage={skill.percentage}
-                        iconClass={skill.iconClass}
-                      />
+                      <div 
+                        key={skill.id} 
+                        className="skill-item-simple"
+                        style={{ 
+                          display: 'flex', 
+                          justifyContent: 'space-between', 
+                          alignItems: 'center', 
+                          padding: '8px 12px', 
+                          background: 'rgba(255, 255, 255, 0.03)', 
+                          border: '1px solid rgba(255, 255, 255, 0.05)', 
+                          borderRadius: '6px' 
+                        }}
+                      >
+                        <span style={{ color: '#ffffff', fontWeight: '500', fontSize: '0.95rem' }}>{skill.name}</span>
+                        <span style={{ color: 'var(--aws-orange)', fontWeight: '600', fontSize: '0.95rem' }}>{skill.percentage}%</span>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -921,6 +1127,128 @@ export default function App() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ACADEMIC RESOURCE HUB */}
+        <section id="academic-hub" className="academic-hub-section scroll-offset">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-subtitle">/ Learning Center</span>
+              <h2 className="section-title">Academic Resource Hub</h2>
+              <div className="section-line"></div>
+            </div>
+
+            <div className="hub-intro glass-card">
+              <div className="hub-intro-content">
+                {renderIcon('graduation-cap', 'hub-main-icon')}
+                <div>
+                  <h3>Knowledge Repository</h3>
+                  <p>A centralized learning platform for cloud, DevOps, programming, and interview preparation resources. Search and filter through high-quality notes, cheat sheets, and blueprints compiled during my cloud journey.</p>
+                </div>
+              </div>
+              
+              {/* Search Bar and Filters */}
+              <div className="hub-controls">
+                <div className="search-bar-wrapper">
+                  {renderIcon('search', 'search-icon')}
+                  <input 
+                    type="text" 
+                    value={hubSearch} 
+                    onChange={(e) => setHubSearch(e.target.value)}
+                    placeholder="Search resources (e.g. AWS DevOps, Linux, Python...)" 
+                    aria-label="Search resources"
+                  />
+                  {hubSearch && (
+                    <button 
+                      className="search-clear-btn" 
+                      onClick={() => setHubSearch('')}
+                      aria-label="Clear search input"
+                    >
+                      {renderIcon('x')}
+                    </button>
+                  )}
+                </div>
+                <div className="hub-filter-tabs">
+                  {['all', 'cloud', 'devops', 'programming', 'career'].map(tab => (
+                    <button 
+                      key={tab} 
+                      className={`filter-tab ${hubFilter === tab ? 'active' : ''}`}
+                      onClick={() => setHubFilter(tab)}
+                    >
+                      {tab === 'programming' ? 'Code' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="resources-grid" id="resources-container">
+              {filteredResources.map(res => {
+                let catClass = 'orange';
+                let catIcon = 'cloud';
+                let catLabel = 'Cloud Notes';
+                if (res.category === 'devops') {
+                  if (res.title.includes('Linux') || res.title.includes('Command')) {
+                    catClass = 'green';
+                    catIcon = 'terminal';
+                    catLabel = 'Systems Admin';
+                  } else if (res.title.includes('Docker')) {
+                    catClass = 'blue';
+                    catIcon = 'box';
+                    catLabel = 'Containerization';
+                  } else if (res.title.includes('Jenkins')) {
+                    catClass = 'red';
+                    catIcon = 'cpu';
+                    catLabel = 'CI/CD Pipeline';
+                  } else {
+                    catClass = 'purple';
+                    catIcon = 'layers';
+                    catLabel = 'DevOps Roadmap';
+                  }
+                } else if (res.category === 'programming') {
+                  if (res.title.includes('Labs') || res.title.includes('Projects')) {
+                    catClass = 'blue';
+                    catIcon = 'layers';
+                    catLabel = 'Hands-on Labs';
+                  } else {
+                    catClass = 'cyan';
+                    catIcon = 'terminal';
+                    catLabel = 'Coding Notes';
+                  }
+                } else if (res.category === 'career') {
+                  catClass = 'orange';
+                  catIcon = 'award';
+                  catLabel = 'Placement Prep';
+                }
+                
+                return (
+                  <div key={res.id} className="resource-card glass-card">
+                    <div className={`resource-type ${catClass}`}>
+                      {renderIcon(catIcon)} {catLabel}
+                    </div>
+                    <h4 className="resource-title">{res.title}</h4>
+                    <p className="resource-desc">{res.desc}</p>
+                    <div className="resource-actions">
+                      <a href="#" className="btn btn-sm btn-primary placeholder-link" onClick={handlePlaceholderClick}>
+                        {renderIcon('book-open')} Open Resource
+                      </a>
+                      <a href="https://github.com" className="btn btn-sm btn-secondary placeholder-link" onClick={handlePlaceholderClick}>
+                        {renderIcon('github')} Code
+                      </a>
+                      <a href="#" className="btn btn-sm btn-secondary placeholder-link" onClick={handlePlaceholderClick}>
+                        {renderIcon('file-text')} Docs
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+              {filteredResources.length === 0 && (
+                <div className="no-resources" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px', color: 'rgba(255,255,255,0.4)' }}>
+                  No resources match your search or filter criteria.
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -1089,7 +1417,78 @@ export default function App() {
                 <div className="github-stat-widget">
                   <span className="widget-label">Build System</span>
                   <span className={gitStats.statusClass}>{gitStats.status}</span>
-                  <CheckCircle className={`widget-icon ${gitStats.status === 'STABLE' ? 'green' : 'red'}`} />
+                  <CheckCircle className={`widget-icon ${gitStats.status === 'STABLE' ? 'green' : gitStats.status === 'CACHED' ? 'orange' : 'red'}`} />
+                </div>
+              </div>
+
+              {/* Languages and Activity */}
+              <div className="github-visualizer-row">
+                {/* Top Languages */}
+                <div className="visualizer-card">
+                  <h4>Top Languages</h4>
+                  <div className="language-bar-chart">
+                    <div className="lang-item">
+                      <div className="lang-meta">
+                        <span>Python</span>
+                        <span>45%</span>
+                      </div>
+                      <div className="lang-bar-track">
+                        <div className="lang-bar-fill progress-python" style={{ width: '45%' }}></div>
+                      </div>
+                    </div>
+                    <div className="lang-item">
+                      <div className="lang-meta">
+                        <span>Shell Scripting</span>
+                        <span>25%</span>
+                      </div>
+                      <div className="lang-bar-track">
+                        <div className="lang-bar-fill progress-shell" style={{ width: '25%' }}></div>
+                      </div>
+                    </div>
+                    <div className="lang-item">
+                      <div className="lang-meta">
+                        <span>React / Javascript</span>
+                        <span>18%</span>
+                      </div>
+                      <div className="lang-bar-track">
+                        <div className="lang-bar-fill progress-js" style={{ width: '18%' }}></div>
+                      </div>
+                    </div>
+                    <div className="lang-item">
+                      <div className="lang-meta">
+                        <span>Java</span>
+                        <span>12%</span>
+                      </div>
+                      <div className="lang-bar-track">
+                        <div className="lang-bar-fill progress-java" style={{ width: '12%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contributions Graph Mockup */}
+                <div className="visualizer-card">
+                  <h4>Activity Matrix (Last 12 Months)</h4>
+                  <div className="activity-matrix-wrapper">
+                    <div className="activity-matrix" id="github-activity-matrix">
+                      {activityCells.map((cell, idx) => (
+                        <div 
+                          key={idx} 
+                          className={`matrix-cell level-${cell.level}`}
+                          title={`${cell.count} contributions on ${cell.date}`}
+                        ></div>
+                      ))}
+                    </div>
+                    <div className="matrix-legend">
+                      <span>Less</span>
+                      <div className="legend-cell level-0"></div>
+                      <div className="legend-cell level-1"></div>
+                      <div className="legend-cell level-2"></div>
+                      <div className="legend-cell level-3"></div>
+                      <div className="legend-cell level-4"></div>
+                      <span>More</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1165,8 +1564,7 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
-              {/* Right Column Contact Form */}
+                            {/* Right Column Contact Form */}
               <div className="contact-form-card glass-card">
                 <div className="form-header-terminal">
                   <div className="terminal-status-light blinking-green"></div>
@@ -1175,56 +1573,145 @@ export default function App() {
                 
                 <form id="contact-form" className="pipeline-form" onSubmit={handleFormSubmit}>
                   <div className="form-group">
-                    <label htmlFor="contact-name">Name</label>
-                    <input type="text" id="contact-name" name="name" required placeholder="John Doe" />
+                    <label htmlFor="contact-name">sender_name:</label>
+                    <div className="input-wrapper">
+                      {renderIcon('user', 'field-icon')}
+                      <input type="text" id="contact-name" name="name" required placeholder="John Doe" disabled={formSubmitting} />
+                    </div>
                   </div>
                   
                   <div className="form-group">
-                    <label htmlFor="contact-email">Email Address</label>
-                    <input type="email" id="contact-email" name="email" required placeholder="john.doe@company.com" />
+                    <label htmlFor="contact-email">sender_email:</label>
+                    <div className="input-wrapper">
+                      {renderIcon('mail', 'field-icon')}
+                      <input type="email" id="contact-email" name="email" required placeholder="john.doe@company.com" disabled={formSubmitting} />
+                    </div>
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="contact-message">Message Payload</label>
-                    <textarea id="contact-message" name="message" required rows="5" placeholder="pipeline:&#10;  message: 'Hello Bhanu, let\'s collaborate!'"></textarea>
+                    <label htmlFor="contact-subject">subject_payload:</label>
+                    <div className="input-wrapper">
+                      {renderIcon('file-text', 'field-icon')}
+                      <input type="text" id="contact-subject" name="subject" required placeholder="Cloud Engineer Position" disabled={formSubmitting} />
+                    </div>
                   </div>
 
-                  <button type="submit" className="btn btn-primary btn-block">
-                    <Send size={14} /> Execute Deployment
+                  <div className="form-group">
+                    <label htmlFor="contact-message">message_body:</label>
+                    <div className="input-wrapper">
+                      {renderIcon('message-square', 'field-icon')}
+                      <textarea id="contact-message" name="message" required rows="5" placeholder="Write your message details here..." disabled={formSubmitting}></textarea>
+                    </div>
+                  </div>
+
+                  <button type="submit" className="btn btn-primary btn-submit-pipeline btn-block" disabled={formSubmitting}>
+                    {formSubmitting ? (
+                      <>
+                        <span className="spinner"></span> Deploying...
+                      </>
+                    ) : (
+                      <>
+                        {renderIcon('play')} Trigger Pipeline Deploy
+                      </>
+                    )}
                   </button>
                 </form>
+
+                {/* Pipeline Status Output Interface */}
+                {showConsole && (
+                  <div className="pipeline-console-output" id="pipeline-console" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className="console-line">
+                      <span className="c-time">[12:00:00]</span> <span className="c-info">INFO:</span> Initializing contact deployment pipeline...
+                    </div>
+                    <div className="console-line">
+                      <span className="c-time">[12:00:01]</span> <span className="c-info">INFO:</span> Validating sender payload parameters...
+                    </div>
+                    {validationLine && (
+                      <div className="console-line" id="console-validation-step">
+                        <span className="c-success">{validationLine}</span>
+                      </div>
+                    )}
+                    {validationLine && (
+                      <div className="console-line">
+                        <span className="c-time">[12:00:02]</span> <span className="c-info">INFO:</span> Establishing secure endpoint tunnel...
+                      </div>
+                    )}
+                    {validationLine && (
+                      <div className="console-line">
+                        <span className="c-time">[12:00:03]</span> <span className="c-info">INFO:</span> Deploying message packet to AWS DevOps Simple Email Service (SES) API...
+                      </div>
+                    )}
+                    {successLine && (
+                      <div className="console-line success-final" id="console-success-step">
+                        <span className="c-success">{successLine}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
             </div>
           </div>
         </section>
 
+        {/* Footer */}
+        <footer className="portfolio-footer">
+          <div className="footer-container">
+            <p>Made with <span className="heart-icon">❤️</span> by Bhanu Prasad Amarapu</p>
+            <p className="footer-meta">AWS DevOps Platform | &copy; <span>2026</span> All rights reserved.</p>
+          </div>
+        </footer>
+
       </div>
 
       {/* PORTFOLIO PROJECT DETAIL DIALOG (MODAL) */}
       {selectedProject && (
-        <div id="project-modal" className="modal-overlay modal-active">
+        <div id="project-detail-modal" className="modal-overlay active">
           <div className="modal-wrapper">
             <button 
               className="modal-close-btn" 
-              onClick={() => setSelectedProject(null)}
-              aria-label="Close modal dialog"
+              id="modal-close-btn" 
+              onClick={() => setSelectedProject(null)} 
+              aria-label="Close modal"
             >
               <X size={18} />
             </button>
-            
-            <div className="modal-content">
-              <h3 className="modal-title">{selectedProject.title}</h3>
-              <p className="modal-subtitle" style={{ fontSize: '0.9rem', color: 'var(--aws-orange)', marginBottom: '15px' }}>
+            <div className="modal-header-visual">
+              <div className="modal-visual-gradient"></div>
+              <div className="modal-icon-container">
+                {renderIcon(selectedProject.icon || 'database')}
+              </div>
+            </div>
+            <div className="modal-content-container">
+              <div className="modal-meta-row">
+                <span id="modal-badge" className="project-badge">{selectedProject.badge}</span>
+                <div className="modal-stats">
+                  <div className="stat-item">
+                    <span className="stat-label">Commits</span>
+                    <span id="stat-commits" className="stat-value">{selectedProject.commits || 142}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Stars</span>
+                    <span id="stat-stars" className="stat-value">{selectedProject.stars || 34}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">PRs</span>
+                    <span id="stat-prs" className="stat-value">{selectedProject.prs || 18}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <h3 id="modal-title" className="modal-title">{selectedProject.title}</h3>
+              <p className="modal-subtitle" style={{ fontSize: '0.95rem', color: 'var(--aws-orange)', marginBottom: '15px', fontWeight: '500' }}>
                 {selectedProject.subtitle}
               </p>
               
-              <p className="modal-description">{selectedProject.desc}</p>
+              <p id="modal-description" className="modal-description">{selectedProject.desc}</p>
               
               <h4 className="modal-section-title">Deployment Stack & Technologies</h4>
-              <div className="modal-tech-stack">
+              <div id="modal-tech-stack" className="modal-tech-stack">
                 {selectedProject.tech.map((t, idx) => (
-                  <span key={idx} className="tech-badge">{t}</span>
+                  <span key={idx} className="badge" style={{ animationDelay: `${idx * 50}ms` }}>{t}</span>
                 ))}
               </div>
               
@@ -1233,7 +1720,8 @@ export default function App() {
                   href={selectedProject.githubUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="btn modal-action-btn github-action-btn"
+                  className="btn modal-action-btn github-action-btn" 
+                  id="modal-repo-link"
                 >
                   <Github size={16} /> Repository Code
                 </a>
@@ -1241,7 +1729,8 @@ export default function App() {
                   href={selectedProject.demoUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="btn modal-action-btn demo-action-btn"
+                  className="btn modal-action-btn demo-action-btn" 
+                  id="modal-demo-link"
                 >
                   <ExternalLink size={16} /> Live Demo
                 </a>

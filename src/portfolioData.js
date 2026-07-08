@@ -19,8 +19,8 @@ export const portfolioData = {
     {
       id: 1,
       tag: "Milestone 1",
-      title: "AWS Infrastructure Design & Management",
-      desc: "Architected and deployed highly resilient AWS network topologies using VPC, subnet zoning, routes, and security groups. Deployed scalable virtual servers (EC2) and secure object stores (S3) controlled by granular IAM access policies.",
+      title: "AWS DevOps Infrastructure Design & Management",
+      desc: "Architected and deployed highly resilient AWS DevOps topologies using VPC, subnet zoning, routes, and security groups. Deployed scalable virtual servers (EC2) and secure object stores (S3) controlled by granular IAM access policies.",
       icon: "cloud"
     },
     {
@@ -40,22 +40,22 @@ export const portfolioData = {
     {
       id: 4,
       tag: "Milestone 4",
-      title: "AWS Project Engineering & Applications",
-      desc: "Synthesized cloud architecture and programming. Developed Study Stream and architected the Hybrid Cloud Deduplication storage platform utilizing AWS SDK, automated S3 storage API layers, and multi-tier database instances.",
+      title: "AWS DevOps Project Engineering & Applications",
+      desc: "Synthesized cloud architecture and programming. Developed Study Stream and architected the Hybrid Cloud Deduplication storage platform utilizing AWS DevOps SDK, automated S3 storage API layers, and multi-tier database instances.",
       icon: "layers"
     },
     {
       id: 5,
       tag: "Milestone 5",
-      title: "AWS Automated CI/CD & GitOps Pipelines",
+      title: "AWS DevOps Automated CI/CD & GitOps Pipelines",
       desc: "Engineered robust continuous integration and delivery loops. Authoring modular declarative Jenkinsfiles, configuring automated webhook triggers, security scanning integration, and artifact repository pushes.",
       icon: "cpu"
     },
     {
       id: 6,
       tag: "Milestone 6",
-      title: "Preparing AWS Solutions Architect Certification",
-      desc: "Consolidating practical engineering by training for the AWS Certified Solutions Architect - Associate. Simulating disaster recovery strategies, dynamic autoscaling, and cost optimization best practices.",
+      title: "Preparing AWS DevOps Solutions Architect Certification",
+      desc: "Consolidating practical engineering by training for the AWS DevOps Certified Solutions Architect - Associate. Simulating disaster recovery strategies, dynamic autoscaling, and cost optimization best practices.",
       icon: "award"
     }
   ],
@@ -85,16 +85,16 @@ export const portfolioData = {
     {
       id: 1,
       date: "2024",
-      title: "Getting Started with AWS",
-      org: "AWS Certification",
-      desc: "Verified foundational competence in AWS core services, global infrastructure parameters, billing concepts, and basic cloud security mechanisms."
+      title: "Getting Started with AWS DevOps",
+      org: "AWS DevOps Certification",
+      desc: "Verified foundational competence in AWS DevOps core services, global infrastructure parameters, billing concepts, and basic cloud security mechanisms."
     },
     {
       id: 2,
       date: "Jan 2026",
-      title: "AWS Solutions Architecture Job Simulation",
+      title: "AWS DevOps Solutions Architecture Job Simulation",
       org: "Forage",
-      desc: "Simulated architectural evaluations, high-availability setups, computing sizing, security configurations, and AWS service selection scenarios."
+      desc: "Simulated architectural evaluations, high-availability setups, computing sizing, security configurations, and AWS DevOps service selection scenarios."
     },
     {
       id: 3,
@@ -113,10 +113,10 @@ export const portfolioData = {
       skills: [
         {
           id: "aws",
-          name: "AWS",
-          tooltip: "AWS (Amazon Web Services)",
+          name: "AWS DevOps",
+          tooltip: "AWS DevOps (Amazon Web Services)",
           experience: "Advanced Level • 2+ Years Experience • Certified Cloud Practitioner",
-          percentage: 90,
+          percentage: 85,
           iconClass: "devicon-amazonwebservices-wordmark colored"
         }
       ]
@@ -310,7 +310,7 @@ export const portfolioData = {
           name: "Git",
           tooltip: "Git",
           experience: "Advanced Level • 3+ Years Experience • Hooks & Flows",
-          percentage: 90,
+          percentage: 85,
           iconClass: "devicon-git-plain colored"
         },
         {
@@ -318,7 +318,7 @@ export const portfolioData = {
           name: "GitHub",
           tooltip: "GitHub Platform",
           experience: "Advanced Level • 3+ Years Experience • Organizations",
-          percentage: 90,
+          percentage: 85,
           iconClass: "devicon-github-original colored"
         },
         {
@@ -339,41 +339,51 @@ export const portfolioData = {
       title: "Study Stream / Academic Hub",
       subtitle: "MCA Mini-Project — JNTU-GV",
       desc: "An integrated academic resource management platform developed to centralize scattered learning materials. Built with React.js frontend, Flask backend, and MySQL database. Implemented JWT-based authentication, role-based access control, advanced search with full-text indexing, and secure file upload system. Containerized application using Docker for consistent development and deployment environments. Successfully reduced student search time by 95% and faculty workload by 40%.",
-      tech: ["Python", "Flask", "React.js", "MySQL", "JWT", "Docker", "AWS S3", "REST API", "Docker Compose"],
+      tech: ["Python", "Flask", "React.js", "MySQL", "JWT", "Docker", "AWS DevOps S3", "REST API", "Docker Compose"],
       githubUrl: "https://github.com/BhanuPrasad-Amarapu/StudyStream",
-      demoUrl: "https://github.com"
+      demoUrl: "https://github.com",
+      badge: "Academic Management",
+      icon: "book-open",
+      commits: 98,
+      stars: 21,
+      prs: 12
     },
     {
       id: 2,
       title: "Hybrid Cloud Deduplication System with ML-Based Similarity Detection",
       subtitle: "Cloud Security & ML Project",
-      desc: "Designed an intelligent hybrid cloud storage system implementing ML-assisted secure deduplication using Decision Tree prediction, SHA-256 hashing, and TF-IDF similarity detection. Integrated Convergent Narrowing Storage (CNS) with AES-256 convergent encryption to ensure unique ciphertext storage and enhanced data security. Extended content intelligence using OCR for image text extraction and Whisper-based speech-to-text processing for multi-format similarity analysis. Deployed hybrid architecture with AWS S3 integration, RBAC security, integrity auditing, and real-time monitoring dashboards for scalable enterprise-grade storage optimization.",
-      tech: ["Python", "Flask", "Machine Learning (TF-IDF, Decision Trees)", "AWS S3", "Boto3", "Cryptography", "OCR", "Whisper", "SQLAlchemy"],
+      desc: "Designed an intelligent hybrid cloud storage system implementing ML-assisted secure deduplication using Decision Tree prediction, SHA-256 hashing, and TF-IDF similarity detection. Integrated Convergent Narrowing Storage (CNS) with AES-256 convergent encryption to ensure unique ciphertext storage and enhanced data security. Extended content intelligence using OCR for image text extraction and Whisper-based speech-to-text processing for multi-format similarity analysis. Deployed hybrid architecture with AWS DevOps S3 integration, RBAC security, integrity auditing, and real-time monitoring dashboards for scalable enterprise-grade storage optimization.",
+      tech: ["Python", "Flask", "Machine Learning (TF-IDF, Decision Trees)", "AWS DevOps S3", "Boto3", "Cryptography", "OCR", "Whisper", "SQLAlchemy"],
       githubUrl: "https://github.com/BhanuPrasad-Amarapu/Cloud-Deduplication",
-      demoUrl: "https://github.com"
+      demoUrl: "https://github.com",
+      badge: "Enterprise Cloud Storage",
+      icon: "database",
+      commits: 142,
+      stars: 34,
+      prs: 18
     }
   ],
 
   futureProjects: [
     {
       id: 1,
-      title: "AWS Serverless Analytics Pipeline",
-      desc: "Real-time log analytics processor running on AWS Kinesis, AWS Lambda, Amazon Athena, and visualized via Amazon QuickSight dashboards.",
+      title: "AWS DevOps Serverless Analytics Pipeline",
+      desc: "Real-time log analytics processor running on AWS DevOps Kinesis, AWS DevOps Lambda, Amazon Athena, and visualized via Amazon QuickSight dashboards.",
       tech: ["Lambda", "Kinesis", "Athena", "S3", "QuickSight"],
       difficulty: "Advanced"
     },
     {
       id: 2,
       title: "Kubernetes GitOps Multi-Cluster Setup",
-      desc: "Multi-cluster sync pipeline utilizing ArgoCD, Helm, and AWS EKS. Synchronises Kubernetes cluster states with Git source code repositories.",
+      desc: "Multi-cluster sync pipeline utilizing ArgoCD, Helm, and AWS DevOps EKS. Synchronises Kubernetes cluster states with Git source code repositories.",
       tech: ["ArgoCD", "Kubernetes", "EKS", "Helm", "GitOps"],
       difficulty: "Hard"
     },
     {
       id: 3,
       title: "Terraform Enterprise Modular Scaffold",
-      desc: "Fully audited, reusable multi-environment (Dev/Stg/Prod) AWS landing zone template complying with AWS Well-Architected Framework guidelines.",
-      tech: ["Terraform", "AWS", "IAM Organizations", "Transit Gateway"],
+      desc: "Fully audited, reusable multi-environment (Dev/Stg/Prod) AWS DevOps landing zone template complying with AWS DevOps Well-Architected Framework guidelines.",
+      tech: ["Terraform", "AWS DevOps", "IAM Organizations", "Transit Gateway"],
       difficulty: "Medium"
     },
     {
@@ -390,5 +400,64 @@ export const portfolioData = {
       tech: ["Jenkins", "SonarQube", "Trivy", "OWASP", "Docker"],
       difficulty: "Hard"
     }
+  ],
+  resources: [
+    {
+      id: 1,
+      category: "cloud",
+      tags: "aws cloud network storage compute security s3 ec2 iam lambdas",
+      title: "AWS DevOps Core Services Study Notes",
+      desc: "Comprehensive reference guide covering S3 design configurations, VPC networking, security group setups, EC2 autoscaling architectures, IAM policies, and Lambda deployment guidelines."
+    },
+    {
+      id: 2,
+      category: "devops",
+      tags: "linux bash command systems admin process network configuration terminal",
+      title: "Linux Command & Bash Scripting Cheat Sheet",
+      desc: "Practical guide detailing bash scripting techniques, permissions administration, system resource monitoring Commands, process tracking, SSH setups, and logs analysis."
+    },
+    {
+      id: 3,
+      category: "devops",
+      tags: "docker containers images networking volumes orchestrations registry volumes compose",
+      title: "Docker Deep Dive & Container Optimization",
+      desc: "Actionable tips for crafting minimal Docker images, managing Docker volumes, setting up internal container networks, Docker Compose configurations, and security audits."
+    },
+    {
+      id: 4,
+      category: "devops",
+      tags: "jenkins pipelines gitops deploy tests build automated continuous integrations",
+      title: "Jenkins Declarative Pipelines Architecture",
+      desc: "Blueprints for writing Jenkinsfiles, utilizing shared libraries, configuring webhooks, environment parameters, testing steps, and automated Slack/Email alerts integration."
+    },
+    {
+      id: 5,
+      category: "devops",
+      tags: "devops git config systems release deploy logs metrics prometheus terraform",
+      title: "Modern DevOps Best Practices & Patterns",
+      desc: "Reference compilation of configuration management concepts, disaster recovery targets, continuous monitoring, and infrastructure provisioning patterns."
+    },
+    {
+      id: 6,
+      category: "programming",
+      tags: "python programming algorithms Flask scripts api backend data databases",
+      title: "Python for Cloud Automation & API Development",
+      desc: "Guide to scripting automation scripts with boto3, constructing RESTful microservices using Flask/FastAPI, handling file inputs, and database ORM integrations."
+    },
+    {
+      id: 7,
+      category: "career",
+      tags: "interview career jobs prep aws devops linux questions answers scenarios",
+      title: "AWS DevOps Interview Question Bank",
+      desc: "Curated catalog of scenario-based technical questions. Covers troubleshooting server issues, solving cloud downtime, scaling pipelines, and system design exercises."
+    },
+    {
+      id: 8,
+      category: "programming",
+      tags: "projects practice lab server scripting local docker test mock",
+      title: "Cloud-Native Mini Projects Blueprints",
+      desc: "A selection of mini-labs and build tutorials designed to test cloud architectures, local Docker configuration environments, web applications, and database synchronization."
+    }
   ]
 };
+
