@@ -301,9 +301,9 @@ export default function App() {
   const typewriterLines = [
     { text: "hello recruiters", className: "intro-line greeting" },
     { text: "iam", className: "intro-line im" },
-    { text: "amarapu bhanu prasad", className: "intro-line name" },
+    { text: "AMARAPU BHANU PRASAD", className: "intro-line name" },
     { text: "AWS devops engineer", className: "intro-line role" },
-    { text: "hire", className: "intro-line status" }
+    { text: "hire me", className: "intro-line status" }
   ];
 
   // Lucide helper mapper
