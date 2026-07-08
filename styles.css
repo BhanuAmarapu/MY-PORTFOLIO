@@ -2498,7 +2498,21 @@ section {
     50% { color: var(--aws-orange); }
 }
 
-/* Phase 2: Cinematic Landing Screen Card */
+/* Phase 2: Cinematic Landing Screen Card Wrapper and Card */
+.landing-card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 10;
+    animation: landingCardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes landingCardFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
 .landing-card {
     background: rgba(15, 23, 42, 0.45);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -2510,18 +2524,12 @@ section {
     max-width: 800px;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
                 0 0 50px rgba(255, 153, 0, 0.05);
-    z-index: 10;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 22px;
-    animation: landingCardFloat 6s ease-in-out infinite alternate;
-}
-
-@keyframes landingCardFloat {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-12px); }
+    transform-style: preserve-3d;
 }
 
 .landing-tag {
@@ -2532,6 +2540,7 @@ section {
     color: var(--aws-orange); /* AWS Orange */
     text-shadow: 0 0 10px rgba(255, 153, 0, 0.35);
     text-transform: uppercase;
+    transform: translateZ(35px);
 }
 
 .landing-title {
@@ -2541,6 +2550,7 @@ section {
     color: #ffffff;
     line-height: 1.25;
     margin: 5px 0;
+    transform: translateZ(55px);
 }
 
 .landing-role-container {
@@ -2549,6 +2559,7 @@ section {
     align-items: center;
     justify-content: center;
     margin-bottom: 5px;
+    transform: translateZ(45px);
 }
 
 .landing-role {
@@ -2575,6 +2586,7 @@ section {
     line-height: 1.75;
     max-width: 680px;
     margin: 10px 0 20px 0;
+    transform: translateZ(30px);
 }
 
 .landing-actions {
@@ -2583,6 +2595,7 @@ section {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    transform: translateZ(50px);
 }
 
 /* Primary Button with animated gradient border */

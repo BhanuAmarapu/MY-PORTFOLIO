@@ -100,50 +100,7 @@ export default function App() {
   const [theme, setTheme] = useState('dark');
   const [preloaderFaded, setPreloaderFaded] = useState(false);
   const [preloaderActive, setPreloaderActive] = useState(true);
-  const [loadingPhase, setLoadingPhase] = useState(true);
   const [centerpieceActive, setCenterpieceActive] = useState(false);
-
-  // Terminal typing loader states
-  const [loadingLines, setLoadingLines] = useState([]);
-  const [currentLoadingText, setCurrentLoadingText] = useState('');
-  const [loadingLogIndex, setLoadingLogIndex] = useState(0);
-
-  const loadingLogs = [
-    "Initializing Cloud Infrastructure...",
-    "Loading AWS DevOps Services...",
-    "Starting CI/CD Deployment Pipeline...",
-    "Provisioning Terraform Landing Zone...",
-    "Deploying Portfolio Assets...",
-    "Ready."
-  ];
-
-  useEffect(() => {
-    if (!loadingPhase) return;
-    let charIndex = 0;
-    let timer;
-
-    const typeLogLine = () => {
-      if (loadingLogIndex < loadingLogs.length) {
-        const currentLineText = loadingLogs[loadingLogIndex];
-        if (charIndex < currentLineText.length) {
-          setCurrentLoadingText(prev => prev + currentLineText.charAt(charIndex));
-          charIndex++;
-          timer = setTimeout(typeLogLine, 35);
-        } else {
-          setLoadingLines(prev => [...prev, currentLineText]);
-          setCurrentLoadingText('');
-          setLoadingLogIndex(prev => prev + 1);
-        }
-      } else {
-        timer = setTimeout(() => {
-          setLoadingPhase(false);
-        }, 800);
-      }
-    };
-
-    timer = setTimeout(typeLogLine, 400);
-    return () => clearTimeout(timer);
-  }, [loadingLogIndex, loadingPhase]);
 
   // Landing page role cycling typewriter
   const landingRoles = [
@@ -159,7 +116,6 @@ export default function App() {
   const [roleIsDeleting, setRoleIsDeleting] = useState(false);
 
   useEffect(() => {
-    if (loadingPhase) return;
     let timer;
     const currentRole = landingRoles[roleIdx];
     
@@ -188,12 +144,43 @@ export default function App() {
 
     timer = setTimeout(tick, 100);
     return () => clearTimeout(timer);
-  }, [roleCharIdx, roleIsDeleting, roleIdx, loadingPhase]);
+  }, [roleCharIdx, roleIsDeleting, roleIdx]);
 
   // Mouse coordinate tracking on preloader
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const handlePreloaderMouseMove = (e) => {
     setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
+  // 3D Tilt Card effect states and handlers
+  const cardRef = useRef(null);
+  const [tiltStyle, setTiltStyle] = useState({});
+
+  const handleCardMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    const maxTiltX = 10;
+    const maxTiltY = 10;
+    
+    const tiltX = -(y / (rect.height / 2)) * maxTiltX;
+    const tiltY = (x / (rect.width / 2)) * maxTiltY;
+    
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`,
+      transition: 'transform 0.1s ease-out'
+    });
+  };
+
+  const handleCardMouseLeave = () => {
+    setTiltStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+      transition: 'transform 0.5s ease-out'
+    });
   };
   
   // Project detail modal state
@@ -817,32 +804,15 @@ export default function App() {
             '--mouse-y': `${mousePos.y}px` 
           }}
         >
-          {loadingPhase ? (
-            /* Phase 1: Interactive Terminal Loading */
-            <div className="terminal-loader-box">
-              <div className="terminal-loader-header">
-                <span className="terminal-dot red"></span>
-                <span className="terminal-dot yellow"></span>
-                <span className="terminal-dot green"></span>
-                <span className="terminal-title" style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', marginLeft: '10px', fontFamily: 'monospace' }}>aws_devops_init.sh</span>
-              </div>
-              <div className="terminal-loader-body">
-                {loadingLines.map((line, idx) => (
-                  <div key={idx} className="terminal-log-line">
-                    <span style={{ color: 'var(--aws-orange)' }}>&gt;</span> {line}
-                  </div>
-                ))}
-                {loadingLogIndex < loadingLogs.length && (
-                  <div className="terminal-log-line active">
-                    <span style={{ color: 'var(--aws-orange)' }}>&gt;</span> {currentLoadingText}
-                    <span className="typing-cursor">|</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          ) : (
-            /* Phase 2: Cinematic Landing Screen Card */
-            <div className="landing-card glass-card">
+          {/* 3D Tilt Cinematic Landing Screen Card Wrapper */}
+          <div className="landing-card-wrapper">
+            <div 
+              ref={cardRef}
+              className="landing-card glass-card"
+              onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
+              style={tiltStyle}
+            >
               <span className="landing-tag">WELCOME RECRUITER</span>
               <h1 className="landing-title">
                 Hello Recruiter 👋<br />
@@ -869,7 +839,7 @@ export default function App() {
                 </a>
               </div>
             </div>
-          )}
+          </div>
         </div>
       )}
 
