@@ -766,8 +766,15 @@ export default function App() {
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
 
-      camera.position.x = mouseX * 0.15;
-      camera.position.y = -mouseY * 0.15;
+      if (!preloaderFaded) {
+        // Slow cinematic orbit panning around the 3D DevOps loop scene during preloader
+        camera.position.x = Math.sin(time * 0.15) * 160 + mouseX * 0.15;
+        camera.position.y = Math.cos(time * 0.1) * 80 - mouseY * 0.15;
+        camera.position.z = 210 + Math.sin(time * 0.08) * 30;
+      } else {
+        camera.position.x = mouseX * 0.15;
+        camera.position.y = -mouseY * 0.15;
+      }
       camera.lookAt(scene.position);
 
       renderer.render(scene, camera);

@@ -2385,10 +2385,12 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Dark futuristic background with moving gradient */
-    background: linear-gradient(-45deg, #090e1c, #07070a, #0e1628, #050507);
+    /* Semi-transparent dark futuristic background with moving gradient */
+    background: linear-gradient(-45deg, rgba(9, 14, 28, 0.72), rgba(7, 7, 10, 0.8), rgba(14, 22, 40, 0.72), rgba(5, 5, 7, 0.8));
     background-size: 400% 400%;
     animation: preloaderGradientBG 15s ease infinite;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 99999;
     display: flex;
     align-items: center;
