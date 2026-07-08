@@ -1166,7 +1166,10 @@ export default function App() {
               {portfolioData.futureProjects.map(proj => (
                 <div key={proj.id} className="future-project-card glass-card">
                   <div className="future-card-header">
-                    <span className="future-difficulty-badge">{proj.difficulty}</span>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                      <span className="future-difficulty-badge">{proj.difficulty}</span>
+                      <span className="future-coming-soon-badge" style={{ background: 'rgba(255, 42, 95, 0.15)', color: '#ff2a5f', border: '1px solid rgba(255, 42, 95, 0.3)', borderRadius: '4px', padding: '3px 8px', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Coming Soon</span>
+                    </div>
                     <h4>{proj.title}</h4>
                   </div>
                   <p className="future-desc">{proj.desc}</p>

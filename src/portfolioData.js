@@ -19,44 +19,23 @@ export const portfolioData = {
     {
       id: 1,
       tag: "Milestone 1",
-      title: "AWS DevOps Infrastructure Design & Management",
-      desc: "Architected and deployed highly resilient AWS DevOps topologies using VPC, subnet zoning, routes, and security groups. Deployed scalable virtual servers (EC2) and secure object stores (S3) controlled by granular IAM access policies.",
+      title: "Advanced Cloud & Linux Infrastructure Design",
+      desc: "Built solid system administration foundations inside Linux environments. Designed secure, high-availability AWS DevOps network zones (VPC, zones, routing, EC2 instances, S3 storage buckets) with granular IAM security rules.",
       icon: "cloud"
     },
     {
       id: 2,
       tag: "Milestone 2",
-      title: "Linux Systems & OS-Level Scripting",
-      desc: "Mastered system administration inside Linux environments. Wrote clean Bash/Shell scripting patterns to automate routine platform checkups, compute metric telemetry logs, and directory backups.",
-      icon: "terminal"
+      title: "Docker Containerization & Kubernetes Orchestration",
+      desc: "Containerized application architectures utilizing multi-stage builds to optimize image size. Managed, mapped, and orchestrated container networks using Docker Compose and Kubernetes pods.",
+      icon: "box"
     },
     {
       id: 3,
       tag: "Milestone 3",
-      title: "Docker Containerization & Image Engineering",
-      desc: "Containerized complex microservices structures. Specialized in writing secure, highly optimized Dockerfiles utilizing multi-stage build patterns, volume mounts, and composing container networks with Docker Compose.",
-      icon: "box"
-    },
-    {
-      id: 4,
-      tag: "Milestone 4",
-      title: "AWS DevOps Project Engineering & Applications",
-      desc: "Synthesized cloud architecture and programming. Developed Study Stream and architected the Hybrid Cloud Deduplication storage platform utilizing AWS DevOps SDK, automated S3 storage API layers, and multi-tier database instances.",
-      icon: "layers"
-    },
-    {
-      id: 5,
-      tag: "Milestone 5",
-      title: "AWS DevOps Automated CI/CD & GitOps Pipelines",
-      desc: "Engineered robust continuous integration and delivery loops. Authoring modular declarative Jenkinsfiles, configuring automated webhook triggers, security scanning integration, and artifact repository pushes.",
+      title: "Automated CI/CD Loops & Declarative IaC",
+      desc: "Engineered robust continuous integration pipelines using modular Jenkinsfiles and webhooks. Configured modular Terraform templates to automate resource provisioning complying with best practices.",
       icon: "cpu"
-    },
-    {
-      id: 6,
-      tag: "Milestone 6",
-      title: "Preparing AWS DevOps Solutions Architect Certification",
-      desc: "Consolidating practical engineering by training for the AWS DevOps Certified Solutions Architect - Associate. Simulating disaster recovery strategies, dynamic autoscaling, and cost optimization best practices.",
-      icon: "award"
     }
   ],
 
