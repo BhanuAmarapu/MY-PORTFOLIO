@@ -1,17 +1,22 @@
 {
-  "name": "bhanu-prasad-portfolio",
+  "name": "bhanu-prasad-portfolio-react",
+  "private": true,
   "version": "1.0.0",
-  "description": "AWS Cloud & DevOps Engineer Portfolio website for Bhanu Prasad Amarapu.",
-  "main": "index.html",
+  "type": "module",
   "scripts": {
-    "dev": "npx -y http-server . -p 3000"
+    "dev": "vite --port 3000 --host",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [
-    "portfolio",
-    "aws",
-    "devops",
-    "cloud"
-  ],
-  "author": "AMARAPU BHANU PRASAD",
-  "license": "ISC"
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.395.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.1"
+  }
 }
