@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/BhanuAmarapu/MY-PORTFOLIO.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -19,6 +13,16 @@ pipeline {
             steps {
                 sh 'npm run build'
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build completed successfully!'
+        }
+
+        failure {
+            echo '❌ Build failed!'
         }
     }
 }
