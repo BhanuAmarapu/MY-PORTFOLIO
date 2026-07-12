@@ -341,34 +341,7 @@ export const portfolioData = {
       stars: 34,
       prs: 18
     },
-     {
-  id: 3,
-  title: "Personal Portfolio Website with CI/CD Pipeline",
-  subtitle: "AWS DevOps Project",
-  desc: "Designed and developed a responsive personal portfolio website using React.js and Vite to showcase professional skills, certifications, projects, and academic achievements. Containerized the application using Docker and implemented a complete CI/CD pipeline with Jenkins. Configured GitHub Webhooks to automate source code checkout, dependency installation, production build, Docker image creation, Docker Hub publishing, and automatic deployment to AWS EC2 via SSH. Served the application using Nginx inside a Docker container, enabling seamless and automated deployments on every GitHub push.",
-  tech: [
-    "React.js",
-    "Vite",
-    "Docker",
-    "Jenkins",
-    "GitHub Actions",
-    "Git",
-    "GitHub Webhooks",
-    "Docker Hub",
-    "AWS EC2",
-    "Nginx",
-    "Linux",
-    "CI/CD"
-  ],
-  githubUrl: "https://github.com/BhanuAmarapu/MY-PORTFOLIO",
-  demoUrl: "http://54.147.24.38:3000",
-  badge: "AWS DevOps",
-  icon: "server",
-  commits: 75,
-  stars: 18,
-  prs: 10
-}
-  
+     
   ],
 
   futureProjects: [
