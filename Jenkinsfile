@@ -39,11 +39,10 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-
                     sh '''
-                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                    docker push $IMAGE_NAME
-                    docker logout
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push $IMAGE_NAME
+                        docker logout
                     '''
                 }
             }
@@ -52,37 +51,38 @@ pipeline {
         stage('Deploy to Portfolio Server') {
             steps {
                 sshagent(credentials: ['portfolio-ssh']) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no ubuntu@$SERVER_IP << EOF
+                    sh """
+ssh -o StrictHostKeyChecking=no ubuntu@${SERVER_IP} '
+docker pull ${IMAGE_NAME}
 
-                    docker pull amarapubhanuprasad/react-app:latest
+docker stop react-container || true
+docker rm react-container || true
 
-                    docker stop react-container || true
-                    docker rm react-container || true
-
-                    docker run -d \
-                      --name react-container \
-                      -p 3000:80 \
-                      amarapubhanuprasad/react-app:latest
-
-                    EOF
-                    '''
+docker run -d \
+  --name react-container \
+  --restart unless-stopped \
+  -p 3000:80 \
+  ${IMAGE_NAME}
+'
+"""
                 }
             }
         }
     }
 
     post {
-
         success {
-            echo '==================================='
+            echo '========================================='
             echo 'CI/CD Pipeline Completed Successfully'
+            echo 'Docker Image Built and Pushed'
             echo 'Application Deployed Successfully'
-            echo '==================================='
+            echo '========================================='
         }
 
         failure {
+            echo '========================================='
             echo 'Pipeline Failed'
+            echo '========================================='
         }
     }
 }
