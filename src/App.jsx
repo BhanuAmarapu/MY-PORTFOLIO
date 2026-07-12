@@ -108,7 +108,7 @@ export default function App() {
     "Cloud Engineer",
     "DevOps Automation Enthusiast",
     "CI/CD Pipeline Builder",
-    "Docker & Kubernetes Learner"
+    "Ansible & Kubernetes Learner"
   ];
   const [roleText, setRoleText] = useState('');
   const [roleIdx, setRoleIdx] = useState(0);
