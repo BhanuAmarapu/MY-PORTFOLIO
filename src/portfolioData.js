@@ -340,8 +340,8 @@ export const portfolioData = {
       commits: 142,
       stars: 34,
       prs: 18
-    }
-    {
+    },
+     {
   id: 3,
   title: "Personal Portfolio Website with CI/CD Pipeline",
   subtitle: "AWS DevOps Project",
@@ -368,6 +368,7 @@ export const portfolioData = {
   stars: 18,
   prs: 10
 }
+  
   ],
 
   futureProjects: [
