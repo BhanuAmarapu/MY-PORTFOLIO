@@ -95,7 +95,7 @@ export const portfolioData = {
           name: "AWS DevOps",
           tooltip: "AWS DevOps (Amazon Web Services)",
           experience: "Advanced Level • 2+ Years Experience • Certified Cloud Practitioner",
-          percentage: 85,
+          percentage: 90,
           iconClass: "devicon-amazonwebservices-wordmark colored"
         }
       ]
