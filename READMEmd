@@ -1,0 +1,130 @@
+# AMARAPU BHANU PRASAD | Portfolio
+
+A modern, responsive personal portfolio website built with React and Vite. This project showcases the professional profile of an AWS DevOps Engineer with sections for skills, education, certifications, projects, an academic resource hub, and a contact form.
+
+## Overview
+
+This portfolio is designed to present technical expertise in a polished and interactive way. It highlights:
+
+- Cloud and DevOps experience
+- Containerization and orchestration skills
+- CI/CD and infrastructure automation knowledge
+- Academic and professional achievements
+- Project work and future roadmap
+
+## Features
+
+- Modern glassmorphism-inspired UI
+- Dark/light theme toggle
+- Animated hero section with role typing effect
+- Skills section with progress cards
+- Milestones and education timeline
+- Certifications showcase
+- Project gallery with modal-style detail view
+- Academic resources hub placeholder section
+- Contact form with simulated submission flow
+- Responsive layout for desktop and mobile screens
+
+## Tech Stack
+
+- React 18
+- Vite 5
+- JavaScript (ES6+)
+- CSS3 for animations and styling
+- Lucide React for icons
+- Devicon CDN for technology icons
+
+## Project Structure
+
+```text
+src/
+  App.jsx           # Main portfolio UI and interactivity
+  main.jsx          # Application entry point
+  portfolioData.js  # Content data for profile, projects, skills, and resources
+styles.css         # Global styling and visual effects
+index.html         # Main HTML file with metadata and external assets
+public/            # Static assets
+package.json       # Scripts and dependencies
+vite.config.js     # Vite configuration
+```
+
+## Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js 18 or later
+- npm 9 or later
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd "MY PORTFOLIO"
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+## Available Scripts
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Build the project for production:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Customization
+
+You can update the portfolio content by editing:
+
+- [src/portfolioData.js](src/portfolioData.js) for profile details, skills, projects, education, and certifications
+- [src/App.jsx](src/App.jsx) for layout and interaction logic
+- [styles.css](styles.css) for visual design and animations
+
+If you want to replace the resume, update the resume link in the portfolio data and make sure the PDF file is available in the project folder.
+
+## Deployment
+
+This app can be deployed on services such as:
+
+- Vercel
+- Netlify
+- GitHub Pages
+- Any static hosting platform
+
+For production deployment, build the app with:
+
+```bash
+npm run build
+```
+
+Then publish the generated files from the dist folder.
+
+## Notes
+
+The contact form currently uses a simulated success flow for demonstration purposes. For a production deployment, it should be connected to a real backend service or email API.
+
+## Contact
+
+If you want to connect or discuss opportunities, reach out through:
+
+- Email: amarapubhanu7@gmail.com
+- LinkedIn: https://www.linkedin.com/in/amarapu-bhanu-prasad-a43254335
+- GitHub: https://github.com/BhanuAmarapu
