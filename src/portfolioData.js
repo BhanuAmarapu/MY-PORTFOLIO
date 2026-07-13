@@ -5,7 +5,7 @@ export const portfolioData = {
     subRoles: [
       "AWS DevOps Engineer",
       "GitOps & CI/CD Specialist",
-      "Cloud Infrastructure Automation Engineer"
+      "Cloud Cloud Infrastructure Automation Engineer"
     ],
     email: "amarapubhanu7@gmail.com",
     phone: "+91 8919065413",
@@ -95,7 +95,7 @@ export const portfolioData = {
           name: "AWS DevOps",
           tooltip: "AWS DevOps (Amazon Web Services)",
           experience: "Advanced Level • 2+ Years Experience • Certified Cloud Practitioner",
-          percentage: 90,
+          percentage: 85,
           iconClass: "devicon-amazonwebservices-wordmark colored"
         }
       ]
@@ -341,7 +341,34 @@ export const portfolioData = {
       stars: 34,
       prs: 18
     },
-     
+    {
+  id: 3,
+  title: "Personal Portfolio Website with Automated CI/CD Pipeline",
+  subtitle: "AWS DevOps Deployment Project",
+  desc: "Designed and developed a modern, responsive personal portfolio website using React.js and Vite to showcase technical skills, certifications, academic projects, and professional achievements. Containerized the application using Docker and implemented an automated Jenkins Continuous Integration pipeline triggered by GitHub Webhooks for source code checkout, dependency installation, and production builds. Deployed the application on AWS EC2 with Nginx configured as a reverse proxy to route client requests to the Docker container. Applied DevOps best practices including Git version control, containerization, automated build workflows, cloud deployment, and production server configuration to deliver a scalable and reliable web application.",
+  tech: [
+    "React.js",
+    "Vite",
+    "JavaScript (ES6+)",
+    "Docker",
+    "Jenkins",
+    "Git",
+    "GitHub",
+    "GitHub Webhooks",
+    "AWS EC2",
+    "Nginx",
+    "Linux",
+    "CI/CD"
+  ],
+  githubUrl: "https://github.com/BhanuAmarapu/MY-PORTFOLIO",
+  demoUrl: "http://54.147.24.38",
+  badge: "AWS DevOps Project",
+  icon: "cloud",
+  commits: 85,
+  stars: 12,
+  prs: 6
+}
+
   ],
 
   futureProjects: [
