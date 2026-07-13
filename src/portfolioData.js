@@ -1,11 +1,11 @@
 export const portfolioData = {
   personal: {
     name: "AMARAPU BHANU PRASAD",
-    role: "AWS DevOps Engineer",
+    role: "AWS DevOps & Cloud Automation Engineer",
     subRoles: [
       "AWS DevOps Engineer",
       "GitOps & CI/CD Specialist",
-      "Infrastructure Automation Engineer"
+      "Cloud Infrastructure Automation Engineer"
     ],
     email: "amarapubhanu7@gmail.com",
     phone: "+91 8919065413",
